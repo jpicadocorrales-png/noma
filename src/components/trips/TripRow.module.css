@@ -1,0 +1,77 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  text-align: left;
+}
+
+.interactive {
+  cursor: pointer;
+  transition:
+    border-color var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.interactive:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.thumb {
+  flex: none;
+  width: 88px;
+  height: 88px;
+  overflow: hidden;
+  border-radius: var(--radius-button);
+  background: var(--surface-muted);
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+}
+
+.meta {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.name {
+  margin-top: 4px;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 1.05;
+  color: var(--color-forest);
+}
+
+.detail {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.action {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--color-forest);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.chevron {
+  flex: none;
+  color: var(--text-subtle);
+  transition:
+    transform var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out);
+}
+
+.interactive:hover .chevron {
+  color: var(--color-forest);
+  transform: translateX(3px);
+}

@@ -1,0 +1,87 @@
+.days {
+  gap: var(--space-1);
+}
+
+.day {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'index weather'
+    'date weather';
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 2px;
+  width: 116px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-button);
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--duration) var(--ease-out),
+    border-color var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out);
+}
+
+.day:hover:not(.active) {
+  border-color: var(--color-forest);
+}
+
+.index {
+  grid-area: index;
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.date {
+  grid-area: date;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.date strong {
+  font-weight: 700;
+}
+
+.weather {
+  grid-area: weather;
+  color: var(--text-muted);
+}
+
+.weatherAlert {
+  color: var(--color-terracotta);
+}
+
+.active {
+  background: var(--color-forest);
+  border-color: var(--color-forest);
+  color: var(--color-ivory);
+}
+
+.active .index,
+.active .weather {
+  color: var(--text-on-dark-muted);
+}
+
+.active .weatherAlert {
+  color: var(--color-terracotta);
+}
+
+/* All days fit once there's room — becomes an even row */
+@media (min-width: 768px) {
+  .days {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+  }
+
+  .day {
+    width: 100%;
+  }
+}

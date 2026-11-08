@@ -1,16 +1,16 @@
 import type { IconName } from '../ui/Icon';
 
-export type TabId = 'explore' | 'trips' | 'saved' | 'profile';
-
 export interface NavItem {
-  id: TabId;
+  to: string;
   label: string;
   icon: IconName;
+  /** Only match the exact path (used for the root route). */
+  end?: boolean;
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { id: 'explore', label: 'Explore', icon: 'explore' },
-  { id: 'trips', label: 'My Trips', icon: 'trips' },
-  { id: 'saved', label: 'Saved', icon: 'bookmark' },
-  { id: 'profile', label: 'Profile', icon: 'profile' },
+  { to: '/', label: 'Explore', icon: 'explore', end: true },
+  { to: '/trips', label: 'My Trips', icon: 'trips' },
+  { to: '/saved', label: 'Saved', icon: 'bookmark' },
+  { to: '/profile', label: 'Profile', icon: 'profile' },
 ];

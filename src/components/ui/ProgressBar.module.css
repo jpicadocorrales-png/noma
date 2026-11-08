@@ -1,0 +1,34 @@
+.track {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: rgba(37, 43, 42, 0.08);
+}
+
+.sm {
+  height: 4px;
+}
+
+.md {
+  height: 8px;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+.forest {
+  background: var(--color-forest);
+}
+
+.sage {
+  background: var(--color-sage);
+}
+
+.warning {
+  background: var(--color-terracotta);
+}

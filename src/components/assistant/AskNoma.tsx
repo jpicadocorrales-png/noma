@@ -1,28 +1,17 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { Icon } from '../ui/Icon';
 import { cx } from '../../lib/cx';
+import { useAssistant } from './AssistantProvider';
 import styles from './AskNoma.module.css';
-
-interface AskNomaProps {
-  /** The screen the traveler is looking at, so the assistant can use it as context. */
-  context: string;
-}
-
-const SUGGESTIONS: Record<string, string[]> = {
-  Explore: ['Where is good in late November?', 'Plan five slow days in Kyoto', 'Weekend trips from Lisbon'],
-  'My Trips': ['Rework day 3 around the rain', 'What am I missing for Kyoto?'],
-  Saved: ['Group my saved places into a route'],
-  Profile: ['Update my travel style'],
-};
 
 /**
  * Persistent, discreet entry point to the assistant.
  * Collapses to its mark while scrolling down, so it never competes with content.
+ * Context (what the traveler is looking at) comes from AssistantProvider.
  */
-export function AskNoma({ context }: AskNomaProps) {
-  const [open, setOpen] = useState(false);
+export function AskNoma() {
+  const { screen, isOpen, open, close, draft, setDraft } = useAssistant();
   const [compact, setCompact] = useState(false);
-  const [draft, setDraft] = useState('');
   const [sent, setSent] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -43,18 +32,25 @@ export function AskNoma({ context }: AskNomaProps) {
   }, []);
 
   useEffect(() => {
-    if (!open) return;
-    inputRef.current?.focus();
+    if (!isOpen) {
+      setSent(null);
+      return;
+    }
+    const input = inputRef.current;
+    if (input) {
+      input.focus();
+      input.setSelectionRange(input.value.length, input.value.length);
+    }
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close();
+      if (e.key === 'Escape') handleClose();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
-  const close = () => {
-    setOpen(false);
-    setSent(null);
+  const handleClose = () => {
+    close();
     triggerRef.current?.focus();
   };
 
@@ -70,19 +66,17 @@ export function AskNoma({ context }: AskNomaProps) {
     submit(draft);
   };
 
-  const suggestions = SUGGESTIONS[context] ?? [];
-
   return (
     <>
-      <div className={cx(styles.backdrop, open && styles.backdropOpen)} onClick={close} aria-hidden="true" />
+      <div className={cx(styles.backdrop, isOpen && styles.backdropOpen)} onClick={handleClose} aria-hidden="true" />
 
       <section
         id={panelId}
         role="dialog"
         aria-modal="false"
         aria-labelledby={titleId}
-        className={cx(styles.panel, open && styles.panelOpen)}
-        hidden={!open}
+        className={cx(styles.panel, isOpen && styles.panelOpen)}
+        hidden={!isOpen}
       >
         <header className={styles.panelHeader}>
           <div>
@@ -91,10 +85,10 @@ export function AskNoma({ context }: AskNomaProps) {
             </h2>
             <p className={styles.context}>
               <span className={styles.contextDot} aria-hidden="true" />
-              Looking at <strong>{context}</strong>
+              Looking at <strong>{screen.label}</strong>
             </p>
           </div>
-          <button type="button" className={styles.close} onClick={close} aria-label="Close Ask NOMA">
+          <button type="button" className={styles.close} onClick={handleClose} aria-label="Close Ask NOMA">
             <Icon name="close" size={18} />
           </button>
         </header>
@@ -113,9 +107,9 @@ export function AskNoma({ context }: AskNomaProps) {
               <p className={styles.intro}>
                 Compare places, shape a route or plan around your dates. You stay in charge of every change.
               </p>
-              {suggestions.length > 0 && (
+              {screen.suggestions.length > 0 && (
                 <ul className={styles.suggestions} aria-label="Suggestions">
-                  {suggestions.map((s) => (
+                  {screen.suggestions.map((s) => (
                     <li key={s}>
                       <button type="button" className={styles.suggestion} onClick={() => submit(s)}>
                         {s}
@@ -151,11 +145,11 @@ export function AskNoma({ context }: AskNomaProps) {
       <button
         ref={triggerRef}
         type="button"
-        className={cx(styles.trigger, compact && !open && styles.compact, open && styles.triggerHidden)}
-        aria-expanded={open}
+        className={cx(styles.trigger, compact && !isOpen && styles.compact, isOpen && styles.triggerHidden)}
+        aria-expanded={isOpen}
         aria-controls={panelId}
         aria-label="Ask NOMA"
-        onClick={() => setOpen(true)}
+        onClick={() => open()}
       >
         <span className={styles.mark} aria-hidden="true" />
         <span className={styles.triggerLabel}>Ask NOMA</span>

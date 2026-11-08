@@ -46,6 +46,7 @@
 
   .link {
     position: relative;
+    display: inline-flex;
     padding: 10px 16px;
     border: 0;
     border-radius: var(--radius-button);

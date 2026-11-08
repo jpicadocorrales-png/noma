@@ -1,21 +1,29 @@
-import type { TabId } from '../components/layout/navigation';
+import { Link } from 'react-router';
+import { useAssistantScreen } from '../components/assistant/AssistantProvider';
 import styles from './PlaceholderScreen.module.css';
 
-const COPY: Record<Exclude<TabId, 'explore'>, { title: string; body: string }> = {
-  trips: { title: 'My Trips', body: 'Itineraries, reservations and budgets will live here, day by day.' },
-  saved: { title: 'Saved', body: 'Places and stories you bookmark while exploring will gather here.' },
-  profile: { title: 'Profile', body: 'Your travel style, preferences and memories, all in one place.' },
-};
+const COPY = {
+  saved: { meta: 'Coming soon', title: 'Saved', body: 'Places and stories you bookmark while exploring will gather here.' },
+  profile: { meta: 'Coming soon', title: 'Profile', body: 'Your travel style, preferences and memories, all in one place.' },
+  notFound: { meta: 'Off the map', title: 'Page not found', body: 'This route doesn’t lead anywhere yet.' },
+} as const;
 
-export function PlaceholderScreen({ tab }: { tab: Exclude<TabId, 'explore'> }) {
-  const copy = COPY[tab];
+export function PlaceholderScreen({ screen }: { screen: keyof typeof COPY }) {
+  const copy = COPY[screen];
+  useAssistantScreen(copy.title, []);
+
   return (
     <section className={`container ${styles.screen}`} aria-labelledby="placeholder-title">
-      <p className={`t-meta ${styles.meta}`}>Coming soon</p>
+      <p className={`t-meta ${styles.meta}`}>{copy.meta}</p>
       <h1 id="placeholder-title" className={styles.title}>
         {copy.title}
       </h1>
       <p className={styles.body}>{copy.body}</p>
+      {screen === 'notFound' && (
+        <Link to="/" className={styles.link}>
+          Back to Explore
+        </Link>
+      )}
     </section>
   );
 }

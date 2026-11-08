@@ -1,0 +1,53 @@
+.glance {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.heading {
+  color: var(--text-muted);
+}
+
+.block {
+  display: grid;
+  gap: 8px;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.label {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.value {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.figure {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-forest);
+}
+
+.figure span {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.sub {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}

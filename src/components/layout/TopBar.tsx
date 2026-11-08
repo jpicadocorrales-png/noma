@@ -1,18 +1,14 @@
-import { NAV_ITEMS, type TabId } from './navigation';
+import { NavLink } from 'react-router';
+import { NAV_ITEMS } from './navigation';
 import { Wordmark } from './Wordmark';
 import { cx } from '../../lib/cx';
 import styles from './TopBar.module.css';
-
-interface TopBarProps {
-  activeTab: TabId;
-  onTabChange: (tab: TabId) => void;
-}
 
 /**
  * Mobile: a simple masthead that scrolls away.
  * Desktop: a sticky bar that also carries primary navigation.
  */
-export function TopBar({ activeTab, onTabChange }: TopBarProps) {
+export function TopBar() {
   return (
     <header className={styles.bar}>
       <div className={cx('container', styles.inner)}>
@@ -20,15 +16,14 @@ export function TopBar({ activeTab, onTabChange }: TopBarProps) {
 
         <nav className={styles.nav} aria-label="Primary">
           {NAV_ITEMS.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              className={cx(styles.link, activeTab === item.id && styles.active)}
-              aria-current={activeTab === item.id ? 'page' : undefined}
-              onClick={() => onTabChange(item.id)}
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) => cx(styles.link, isActive && styles.active)}
             >
               {item.label}
-            </button>
+            </NavLink>
           ))}
         </nav>
 

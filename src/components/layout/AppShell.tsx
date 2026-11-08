@@ -1,25 +1,24 @@
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
+import { useLocation } from 'react-router';
 import { TopBar } from './TopBar';
 import { BottomNav } from './BottomNav';
 import { AskNoma } from '../assistant/AskNoma';
-import { NAV_ITEMS, type TabId } from './navigation';
 import styles from './AppShell.module.css';
 
-interface AppShellProps {
-  activeTab: TabId;
-  onTabChange: (tab: TabId) => void;
-  children: ReactNode;
-}
+export function AppShell({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation();
 
-export function AppShell({ activeTab, onTabChange, children }: AppShellProps) {
-  const screenLabel = NAV_ITEMS.find((n) => n.id === activeTab)?.label ?? 'Explore';
+  // New screen → start at the top (query-string changes keep position).
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [pathname]);
 
   return (
     <div className={styles.shell}>
-      <TopBar activeTab={activeTab} onTabChange={onTabChange} />
+      <TopBar />
       <main className={styles.main}>{children}</main>
-      <AskNoma context={screenLabel} />
-      <BottomNav activeTab={activeTab} onTabChange={onTabChange} />
+      <AskNoma />
+      <BottomNav />
     </div>
   );
 }

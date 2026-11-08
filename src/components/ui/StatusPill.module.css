@@ -1,0 +1,47 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.confirmed {
+  background: var(--color-sage-soft);
+  color: var(--color-forest);
+}
+
+.pending {
+  background: var(--color-sand-soft);
+  color: var(--color-charcoal);
+}
+
+.pending .dot {
+  background: transparent;
+  border: 1.5px solid currentColor;
+}
+
+.neutral {
+  background: rgba(37, 43, 42, 0.06);
+  color: var(--text-muted);
+}
+
+.accent {
+  background: rgba(244, 240, 231, 0.94);
+  color: var(--color-forest);
+}
+
+.accent .dot {
+  background: var(--color-terracotta);
+}

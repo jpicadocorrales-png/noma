@@ -1,0 +1,80 @@
+.view {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.dayHeader {
+  padding-top: var(--space-1);
+}
+
+.dayMeta {
+  color: var(--text-muted);
+}
+
+.dayTitle {
+  margin-top: 10px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-forest);
+  text-wrap: balance;
+}
+
+.daySummary {
+  margin-top: 10px;
+  max-width: 52ch;
+  color: var(--text-muted);
+}
+
+.dayFacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line);
+}
+
+.weather {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progressText {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.progressBar {
+  width: 96px;
+}
+
+.timeline {
+  padding-top: var(--space-1);
+}
+
+@media (min-width: 1024px) {
+  .view {
+    gap: var(--space-4);
+  }
+
+  .dayTitle {
+    font-size: 44px;
+  }
+}

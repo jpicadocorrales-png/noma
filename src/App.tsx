@@ -1,20 +1,29 @@
-import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router';
 import { AppShell } from './components/layout/AppShell';
-import type { TabId } from './components/layout/navigation';
+import { AssistantProvider } from './components/assistant/AssistantProvider';
+import { TripsProvider } from './state/TripsProvider';
 import { ExploreHome } from './screens/ExploreHome';
+import { MyTrips } from './screens/MyTrips';
+import { TripDetail } from './screens/TripDetail';
 import { PlaceholderScreen } from './screens/PlaceholderScreen';
 
 export function App() {
-  const [tab, setTab] = useState<TabId>('explore');
-
-  const handleTabChange = (next: TabId) => {
-    setTab(next);
-    window.scrollTo({ top: 0 });
-  };
-
   return (
-    <AppShell activeTab={tab} onTabChange={handleTabChange}>
-      {tab === 'explore' ? <ExploreHome /> : <PlaceholderScreen tab={tab} />}
-    </AppShell>
+    <BrowserRouter>
+      <TripsProvider>
+        <AssistantProvider>
+          <AppShell>
+            <Routes>
+              <Route index element={<ExploreHome />} />
+              <Route path="trips" element={<MyTrips />} />
+              <Route path="trips/:tripId" element={<TripDetail />} />
+              <Route path="saved" element={<PlaceholderScreen screen="saved" />} />
+              <Route path="profile" element={<PlaceholderScreen screen="profile" />} />
+              <Route path="*" element={<PlaceholderScreen screen="notFound" />} />
+            </Routes>
+          </AppShell>
+        </AssistantProvider>
+      </TripsProvider>
+    </BrowserRouter>
   );
 }

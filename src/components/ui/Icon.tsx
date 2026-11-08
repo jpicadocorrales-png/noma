@@ -18,6 +18,22 @@ const paths = {
   'chevron-right': <path d="m9.5 6 6 6-6 6" />,
   bookmark: <path d="M6.75 4.75h10.5v14.5L12 15.6l-5.25 3.65Z" />,
   close: <path d="m6.5 6.5 11 11M17.5 6.5l-11 11" />,
+  'arrow-left': <path d="M19.5 12h-15M10.5 6l-6 6 6 6" />,
+  check: <path d="m5.5 12.5 4 4 9-9.5" />,
+  plus: <path d="M12 5v14M5 12h14" />,
+  sun: (
+    <>
+      <circle cx="12" cy="12" r="3.75" />
+      <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4" />
+    </>
+  ),
+  cloud: <path d="M7.5 18.5h9.25a3.75 3.75 0 0 0 .4-7.48A5.25 5.25 0 0 0 7.1 10.6 3.95 3.95 0 0 0 7.5 18.5Z" />,
+  rain: (
+    <>
+      <path d="M7.5 15h9.25a3.75 3.75 0 0 0 .4-7.48A5.25 5.25 0 0 0 7.1 7.1 3.95 3.95 0 0 0 7.5 15Z" />
+      <path d="m9 18-1 2.5M13 18l-1 2.5M17 18l-1 2.5" />
+    </>
+  ),
   // Explore — layered editorial frames
   explore: (
     <>
