@@ -1,0 +1,329 @@
+/* ---------- Floating trigger ---------- */
+
+.trigger {
+  --offset-bottom: calc(var(--bottom-nav-height) + var(--safe-bottom) + 16px);
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--offset-bottom);
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 18px 0 15px;
+  gap: 10px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-forest);
+  color: var(--color-ivory);
+  box-shadow: var(--shadow-float);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    padding var(--duration) var(--ease-out),
+    gap var(--duration) var(--ease-out),
+    background-color var(--duration) var(--ease-out),
+    opacity var(--duration) var(--ease-out),
+    transform var(--duration) var(--ease-out);
+}
+
+.trigger:hover {
+  background: var(--color-forest-strong);
+}
+
+.trigger:focus-visible {
+  outline-offset: 4px;
+}
+
+.triggerLabel {
+  display: inline-block;
+  max-width: 120px;
+  white-space: nowrap;
+  transition:
+    max-width var(--duration) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+}
+
+.compact {
+  padding: 0 15px;
+  gap: 0;
+}
+
+.compact .triggerLabel {
+  max-width: 0;
+  opacity: 0;
+}
+
+.triggerHidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+/* NOMA's mark: a ring holding a single point — a place in focus */
+.mark {
+  position: relative;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 1.6px solid currentColor;
+  border-radius: 50%;
+}
+
+.mark::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--color-terracotta);
+}
+
+/* ---------- Panel ---------- */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  background: rgba(16, 48, 45, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration) var(--ease-out);
+}
+
+.backdropOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel {
+  position: fixed;
+  z-index: 50;
+  inset: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  max-height: min(78dvh, 560px);
+  padding: var(--space-3) var(--gutter) calc(var(--space-2) + var(--safe-bottom));
+  background: var(--surface);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -12px 40px -16px rgba(16, 48, 45, 0.35);
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.panelOpen {
+  animation: sheet-in var(--duration) var(--ease-out);
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.panelTitle {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.context {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-sage-soft);
+  color: var(--color-forest);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.context strong {
+  font-weight: 700;
+}
+
+.contextDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-forest);
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background-color var(--duration) var(--ease-out);
+}
+
+.close:hover {
+  background: var(--surface-muted);
+  color: var(--text);
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding-block: var(--space-2);
+}
+
+.intro {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.suggestions {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+}
+
+.suggestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-button);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--duration) var(--ease-out),
+    background-color var(--duration) var(--ease-out);
+}
+
+.suggestion svg {
+  flex: none;
+  color: var(--text-subtle);
+  transition: color var(--duration) var(--ease-out);
+}
+
+.suggestion:hover {
+  border-color: var(--color-forest);
+}
+
+.suggestion:hover svg {
+  color: var(--color-forest);
+}
+
+.exchange {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.userMsg {
+  justify-self: end;
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 14px 14px 4px 14px;
+  background: var(--color-forest);
+  color: var(--color-ivory);
+  font-size: 14px;
+}
+
+.note {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.composer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 52px;
+  padding: 0 6px 0 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-card);
+  background: var(--bg);
+  transition: border-color var(--duration) var(--ease-out);
+}
+
+.composer:focus-within {
+  border-color: var(--color-forest);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font-size: 15px;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--text-subtle);
+}
+
+.send {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: var(--radius-button);
+  background: var(--color-forest);
+  color: var(--color-ivory);
+  cursor: pointer;
+}
+
+.send:disabled {
+  background: var(--surface-muted);
+  color: var(--text-subtle);
+  cursor: default;
+}
+
+/* ---------- Larger screens: anchored card instead of a sheet ---------- */
+
+@media (min-width: 768px) {
+  .panel {
+    inset: auto var(--gutter) calc(var(--bottom-nav-height) + var(--safe-bottom) + 16px) auto;
+    width: 380px;
+    padding: var(--space-3);
+    border-radius: 20px;
+    box-shadow: var(--shadow-float);
+  }
+
+  .backdrop {
+    background: transparent;
+  }
+}
+
+@media (min-width: 1024px) {
+  .trigger {
+    --offset-bottom: 32px;
+    right: 32px;
+  }
+
+  .panel {
+    right: 32px;
+    bottom: 32px;
+  }
+}

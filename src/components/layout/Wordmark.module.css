@@ -1,0 +1,21 @@
+.wordmark {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.34em;
+  color: var(--color-forest);
+  line-height: 1;
+  /* letter-spacing adds trailing space; pull the dot back in */
+  margin-right: -0.34em;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  margin-left: -0.28em;
+  margin-bottom: 1px;
+  border-radius: 50%;
+  background: var(--color-terracotta);
+}

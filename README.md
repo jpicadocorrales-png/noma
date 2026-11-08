@@ -1,2 +1,65 @@
-# noma
-Travel AI app
+# NOMA
+
+**The journey, thoughtfully designed.**
+Your AI-powered travel companion — from the first idea to the final destination.
+
+NOMA helps travelers discover destinations, plan trips with AI assistance, organize itineraries and budgets, adapt when plans change, and keep the places and memories that matter.
+
+## Getting started
+
+Requires Node.js 20+.
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # type-check + production build into dist/
+npm run preview  # serve the production build
+```
+
+> Open the app through the dev server. Double-clicking `index.html` shows a blank page — Vite has to process it first.
+
+## Stack
+
+- React 19 + TypeScript, built with Vite
+- CSS Modules + global design tokens (no UI framework)
+- Google Fonts: Manrope (interface) and DM Serif Display (editorial)
+- Photography served from the Unsplash image CDN (prototype only)
+
+## Project structure
+
+```
+src/
+  styles/          tokens.css (colors, spacing, radii, shadows, motion) and global.css
+  lib/             small helpers (class names, photo URLs)
+  components/
+    ui/            reusable primitives: Button, IconButton, SearchBar, Photo, RouteLine…
+    layout/        AppShell, TopBar (desktop nav), BottomNav (mobile/tablet), Wordmark
+    assistant/     AskNoma floating entry point and panel
+    explore/       Explore Home sections and cards
+  data/            static editorial content (shaped like a future API)
+  screens/         ExploreHome and placeholder screens
+```
+
+## Visual identity — "Modern Explorer"
+
+| Token        | Value     | Use                                         |
+| ------------ | --------- | ------------------------------------------- |
+| Deep Forest  | `#183B38` | Primary brand, buttons, navigation emphasis |
+| Warm Ivory   | `#F4F0E7` | Main background                             |
+| Sand         | `#D7C7AA` | Secondary neutral                           |
+| Sage         | `#A9C5B4` | Supporting surfaces and tags                |
+| Terracotta   | `#E97852` | Sparing accent for meaningful highlights    |
+| Charcoal     | `#252B2A` | Primary text                                |
+
+- **Typography:** DM Serif Display only for headlines, destination names and editorial statements; Manrope for everything else.
+- **Spacing:** 8px base, 32px section spacing (scales to 48/64px on tablet/desktop).
+- **Radii:** 16px cards, 12px buttons.
+- **Layout:** mobile-first from a 390 × 844 reference; tablet and desktop get their own compositions rather than a stretched mobile layout.
+
+All values live in `src/styles/tokens.css`; components should reference tokens, not raw values.
+
+## Status
+
+- ✅ Design foundation and Explore Home (responsive)
+- ⏳ My Trips, Saved, Profile (placeholders)
+- ⏳ Ask NOMA assistant backend (UI only — not connected)

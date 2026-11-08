@@ -1,0 +1,92 @@
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 6px 0 16px;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.search:hover {
+  border-color: var(--line-strong);
+}
+
+.search:focus-within {
+  border-color: var(--color-forest);
+  box-shadow:
+    0 0 0 3px rgba(169, 197, 180, 0.45),
+    var(--shadow-sm);
+}
+
+.leading {
+  flex: none;
+  color: var(--color-forest);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--text-subtle);
+  font-weight: 500;
+}
+
+.input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.submit {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--radius-button);
+  background: var(--color-forest);
+  color: var(--color-ivory);
+  cursor: pointer;
+  transition:
+    background-color var(--duration) var(--ease-out),
+    opacity var(--duration) var(--ease-out);
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--color-forest-strong);
+}
+
+.submit:disabled {
+  background: var(--color-sand-soft);
+  color: var(--text-subtle);
+  cursor: default;
+}
+
+@media (min-width: 1024px) {
+  .search {
+    height: 64px;
+    padding-left: 20px;
+  }
+  .input {
+    font-size: 16px;
+  }
+  .submit {
+    width: 52px;
+    height: 52px;
+  }
+}

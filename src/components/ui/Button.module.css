@@ -1,0 +1,90 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--duration) var(--ease-out),
+    border-color var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.button:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.md {
+  height: 48px;
+  padding-inline: 20px;
+  font-size: 15px;
+}
+
+.sm {
+  height: 40px;
+  padding-inline: 16px;
+  font-size: 14px;
+}
+
+.iconRight,
+.iconLeft {
+  flex: none;
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.button:hover:not(:disabled) .iconRight {
+  transform: translateX(3px);
+}
+
+/* Variants */
+
+.primary {
+  background: var(--color-forest);
+  color: var(--text-on-dark);
+}
+.primary:hover:not(:disabled) {
+  background: var(--color-forest-strong);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--color-forest);
+  border-color: var(--line-strong);
+}
+.secondary:hover:not(:disabled) {
+  border-color: var(--color-forest);
+  background: rgba(24, 59, 56, 0.04);
+}
+
+/* For use on photography */
+.light {
+  background: var(--color-ivory);
+  color: var(--color-forest);
+}
+.light:hover:not(:disabled) {
+  background: #fff;
+}
+.light:focus-visible {
+  outline-color: var(--color-ivory);
+}
+
+/* Reserved for the single most meaningful action on a screen */
+.accent {
+  background: var(--color-terracotta);
+  color: var(--color-charcoal);
+}
+.accent:hover:not(:disabled) {
+  background: var(--color-terracotta-strong);
+}

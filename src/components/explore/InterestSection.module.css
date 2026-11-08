@@ -1,0 +1,21 @@
+.grid {
+  gap: 12px;
+}
+
+/* From tablet up, all five fit — switch from rail to a quiet grid */
+@media (min-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-2);
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    gap: var(--space-3);
+  }
+}

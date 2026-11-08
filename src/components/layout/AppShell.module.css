@@ -1,0 +1,14 @@
+.shell {
+  min-height: 100dvh;
+}
+
+/* Leave room for the bottom nav + floating Ask NOMA on touch layouts */
+.main {
+  padding-bottom: calc(var(--bottom-nav-height) + var(--safe-bottom) + 88px);
+}
+
+@media (min-width: 1024px) {
+  .main {
+    padding-bottom: var(--space-12);
+  }
+}

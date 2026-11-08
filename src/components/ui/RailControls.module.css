@@ -1,0 +1,10 @@
+.controls {
+  display: none;
+  gap: var(--space-1);
+}
+
+@media (min-width: 768px) and (hover: hover) {
+  .controls {
+    display: flex;
+  }
+}

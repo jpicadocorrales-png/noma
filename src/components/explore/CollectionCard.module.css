@@ -1,0 +1,164 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  transition:
+    border-color var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out),
+    transform var(--duration) var(--ease-out);
+}
+
+.card:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background: var(--surface-muted);
+}
+
+.card:hover .photo {
+  transform: scale(1.04);
+}
+
+.number {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(244, 240, 231, 0.9);
+  color: var(--color-forest);
+  font-size: 10px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--space-3) var(--space-3) var(--space-3);
+}
+
+.kicker {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.title {
+  margin-top: 10px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--color-forest);
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.link:focus-visible::after {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+  border-radius: var(--radius-card);
+}
+
+.excerpt {
+  margin-top: 10px;
+  max-width: 42ch;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.route {
+  margin-top: var(--space-3);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line);
+  color: var(--color-forest);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cta svg {
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.card:hover .cta svg {
+  transform: translateX(4px);
+}
+
+/* ---------- Tablet: lead runs horizontally across the full width ---------- */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .lead {
+    flex-direction: row;
+  }
+
+  .lead .media {
+    flex: 0 0 52%;
+    aspect-ratio: auto;
+    min-height: 420px;
+  }
+
+  .lead .body {
+    justify-content: center;
+    padding: var(--space-4);
+  }
+}
+
+/* ---------- Wide desktop: lead tall on the left, sides stacked horizontally ---------- */
+@media (min-width: 1200px) {
+  .lead .media {
+    flex: 1;
+    aspect-ratio: auto;
+    min-height: 420px;
+  }
+
+  .lead .body {
+    flex: none;
+    padding: var(--space-4);
+  }
+
+  .lead .title {
+    font-size: 48px;
+  }
+
+  .side {
+    flex-direction: row;
+  }
+
+  .side .media {
+    flex: 0 0 44%;
+    aspect-ratio: auto;
+  }
+
+  .side .body {
+    padding: var(--space-3);
+  }
+
+  .side .excerpt {
+    font-size: 14px;
+  }
+}

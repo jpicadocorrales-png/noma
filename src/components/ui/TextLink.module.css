@@ -1,0 +1,30 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-forest);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.label {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--duration) var(--ease-out);
+  padding-bottom: 1px;
+}
+
+.link:hover .label {
+  background-size: 100% 1px;
+}
+
+.arrow {
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.link:hover .arrow {
+  transform: translateX(3px);
+}

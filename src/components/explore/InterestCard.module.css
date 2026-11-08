@@ -1,0 +1,75 @@
+.card {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 136px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--surface-muted);
+  color: var(--text-on-dark);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.photo {
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(16, 48, 45, 0) 45%, rgba(16, 48, 45, 0.82) 100%);
+  transition: opacity var(--duration) var(--ease-out);
+}
+
+.overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.count {
+  color: var(--text-on-dark-muted);
+  font-size: 10px;
+}
+
+.card:hover .photo {
+  transform: scale(1.06);
+}
+
+.card:focus-visible {
+  outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  .card {
+    width: auto;
+    aspect-ratio: 4 / 5;
+  }
+
+  .overlay {
+    padding: var(--space-2);
+  }
+
+  .label {
+    font-size: 18px;
+  }
+}

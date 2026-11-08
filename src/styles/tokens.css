@@ -1,0 +1,93 @@
+/*
+ * NOMA design tokens — "Modern Explorer".
+ * Brand colors are fixed; derived values are tints/shades of those six,
+ * never new hues.
+ */
+:root {
+  /* Brand palette */
+  --color-forest: #183b38;
+  --color-ivory: #f4f0e7;
+  --color-sand: #d7c7aa;
+  --color-sage: #a9c5b4;
+  --color-terracotta: #e97852;
+  --color-charcoal: #252b2a;
+
+  /* Derived (tints & shades of the palette) */
+  --color-forest-strong: #10302d;
+  --color-forest-ink: rgba(16, 48, 45, 0.86);
+  --color-ivory-raised: #faf7f1;
+  --color-sand-soft: #e8dfcf;
+  --color-sage-soft: #d6e4db;
+  --color-terracotta-strong: #dc6942;
+
+  /* Semantic roles */
+  --bg: var(--color-ivory);
+  --surface: var(--color-ivory-raised);
+  --surface-muted: var(--color-sand-soft);
+  --text: var(--color-charcoal);
+  --text-muted: rgba(37, 43, 42, 0.7);
+  --text-subtle: rgba(37, 43, 42, 0.54);
+  --text-on-dark: var(--color-ivory);
+  --text-on-dark-muted: rgba(244, 240, 231, 0.8);
+  --line: rgba(37, 43, 42, 0.12);
+  --line-strong: rgba(37, 43, 42, 0.22);
+  --accent: var(--color-terracotta);
+  --focus-ring: var(--color-forest);
+
+  /* Typography */
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+
+  /* Spacing — 8px base */
+  --space-0-5: 4px;
+  --space-1: 8px;
+  --space-1-5: 12px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+
+  --section-gap: 32px;
+  --gutter: 20px;
+  --max-width: 1320px;
+
+  /* Shape */
+  --radius-card: 16px;
+  --radius-button: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 999px;
+
+  /* Elevation — forest-tinted, never pure black */
+  --shadow-xs: 0 1px 2px rgba(24, 59, 56, 0.06);
+  --shadow-sm: 0 1px 2px rgba(24, 59, 56, 0.06), 0 4px 12px -6px rgba(24, 59, 56, 0.12);
+  --shadow-md: 0 12px 32px -16px rgba(24, 59, 56, 0.32);
+  --shadow-float: 0 14px 34px -12px rgba(16, 48, 45, 0.5), 0 2px 6px rgba(16, 48, 45, 0.18);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-fast: 160ms;
+  --duration: 260ms;
+  --duration-slow: 700ms;
+
+  /* Chrome */
+  --bottom-nav-height: 64px;
+  --top-bar-height: 76px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 32px;
+    --section-gap: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 48px;
+    --section-gap: 64px; /* 2 × base section spacing */
+  }
+}

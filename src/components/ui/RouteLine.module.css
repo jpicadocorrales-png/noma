@@ -1,0 +1,86 @@
+.route {
+  --route-color: rgba(24, 59, 56, 0.35);
+  --dot-fill: var(--bg);
+  --dot-stroke: var(--color-forest);
+  display: flex;
+  width: 100%;
+}
+
+.light {
+  --route-color: rgba(244, 240, 231, 0.45);
+  --dot-fill: transparent;
+  --dot-stroke: var(--color-ivory);
+}
+
+.stop {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.first {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.last {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Dashed connector drawn between dots */
+.stop::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed var(--route-color);
+}
+
+.first::before {
+  left: 4px;
+}
+
+.last::before {
+  right: 4px;
+}
+
+.dot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--dot-stroke);
+  background: var(--dot-fill);
+}
+
+.first .dot {
+  background: var(--dot-stroke);
+}
+
+.last .dot {
+  background: var(--color-terracotta);
+  border-color: var(--color-terracotta);
+}
+
+.label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.light .label {
+  color: var(--text-on-dark-muted);
+}

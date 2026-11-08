@@ -1,0 +1,228 @@
+.feature {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  /* aspect-ratio acts as a minimum; content can still grow the card taller */
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--color-forest);
+  color: var(--text-on-dark);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.photo {
+  transform: scale(1.02);
+}
+
+.feature:hover .photo {
+  transform: scale(1.05);
+}
+
+/* Forest-tinted scrim, not black, so photography stays warm */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(16, 48, 45, 0.42) 0%, rgba(16, 48, 45, 0) 22%),
+    linear-gradient(180deg, rgba(16, 48, 45, 0) 30%, rgba(16, 48, 45, 0.6) 58%, rgba(16, 48, 45, 0.94) 100%);
+}
+
+.topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2);
+}
+
+.badge {
+  padding: 6px 12px;
+  border: 1px solid rgba(244, 240, 231, 0.32);
+  border-radius: var(--radius-pill);
+  background: rgba(244, 240, 231, 0.14);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.coords {
+  color: var(--text-on-dark-muted);
+  font-size: 10px;
+  text-align: right;
+}
+
+.content {
+  padding: var(--space-3) var(--space-3) var(--space-3);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-on-dark-muted);
+}
+
+.sep {
+  width: 16px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.name {
+  margin-top: var(--space-1);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  margin-top: var(--space-1-5);
+  max-width: 40ch;
+  color: var(--text-on-dark-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.facts {
+  display: flex;
+  gap: var(--space-3);
+  margin: var(--space-3) 0;
+  padding-top: var(--space-2);
+  border-top: 1px solid rgba(244, 240, 231, 0.22);
+}
+
+.fact dt {
+  color: var(--text-on-dark-muted);
+  font-size: 10px;
+}
+
+.fact dd {
+  margin: 4px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1-5);
+}
+
+.actions > button:first-child {
+  flex: 1;
+}
+
+/* ---------- Phone: photo above, story below on forest ---------- */
+@media (max-width: 767px) {
+  .feature {
+    aspect-ratio: auto;
+    justify-content: flex-start;
+  }
+
+  .media {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(16, 48, 45, 0.45) 0%, rgba(16, 48, 45, 0) 24%),
+      linear-gradient(180deg, rgba(24, 59, 56, 0) 58%, var(--color-forest) 100%);
+  }
+
+  .scrim {
+    display: none;
+  }
+
+  .topline {
+    position: absolute;
+    inset: 0 0 auto 0;
+  }
+
+  .content {
+    position: relative;
+    margin-top: -56px;
+    padding-top: 0;
+  }
+}
+
+/* ---------- Tablet ---------- */
+@media (min-width: 768px) {
+  .feature {
+    aspect-ratio: 4 / 3;
+  }
+
+  .topline {
+    padding: var(--space-3);
+  }
+
+  .coords {
+    font-size: 11px;
+  }
+
+  .content {
+    padding: var(--space-4);
+    max-width: 560px;
+  }
+
+  .name {
+    font-size: 88px;
+  }
+
+  .actions > button:first-child {
+    flex: none;
+  }
+}
+
+/* ---------- Desktop: cinematic, text anchored left ---------- */
+@media (min-width: 1024px) {
+  /* Height-driven, so the width always follows the container */
+  .feature {
+    aspect-ratio: auto;
+    height: clamp(560px, 46vw, 680px);
+  }
+
+  .scrim {
+    background:
+      linear-gradient(180deg, rgba(16, 48, 45, 0.38) 0%, rgba(16, 48, 45, 0) 20%),
+      linear-gradient(90deg, rgba(16, 48, 45, 0.88) 0%, rgba(16, 48, 45, 0.55) 34%, rgba(16, 48, 45, 0) 62%);
+  }
+
+  .topline {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .content {
+    padding: var(--space-5);
+    max-width: 520px;
+  }
+
+  .name {
+    font-size: 112px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+}

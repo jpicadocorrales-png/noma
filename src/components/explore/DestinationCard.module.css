@@ -1,0 +1,98 @@
+.card {
+  position: relative;
+  width: 252px;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--surface-muted);
+}
+
+.card:hover .photo {
+  transform: scale(1.05);
+}
+
+.rank {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 9px;
+  border-radius: var(--radius-pill);
+  background: rgba(244, 240, 231, 0.9);
+  color: var(--color-forest);
+  font-size: 10px;
+}
+
+.save {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2; /* above the stretched link */
+}
+
+.body {
+  padding: 14px 2px 0;
+}
+
+.location {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.name {
+  margin-top: 6px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-forest);
+}
+
+.link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--duration) var(--ease-out);
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--radius-card);
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.link:focus-visible::after {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+.card:hover .link {
+  background-size: 100% 1px;
+}
+
+.note {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+@media (min-width: 1024px) {
+  .card {
+    width: 296px;
+  }
+
+  .name {
+    font-size: 28px;
+  }
+}

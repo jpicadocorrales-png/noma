@@ -1,0 +1,78 @@
+.iconButton {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition:
+    background-color var(--duration) var(--ease-out),
+    border-color var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.iconButton:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.iconButton:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+.md {
+  width: 40px;
+  height: 40px;
+}
+
+.lg {
+  width: 48px;
+  height: 48px;
+}
+
+/* On photography */
+.glass {
+  background: rgba(244, 240, 231, 0.16);
+  border-color: rgba(244, 240, 231, 0.3);
+  color: var(--color-ivory);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.glass:hover:not(:disabled) {
+  background: rgba(244, 240, 231, 0.3);
+}
+.glass:focus-visible {
+  outline-color: var(--color-ivory);
+}
+.glass[aria-pressed='true'] {
+  background: var(--color-ivory);
+  border-color: var(--color-ivory);
+  color: var(--color-forest);
+}
+
+/* Floating over photography, quieter than glass */
+.surface {
+  background: rgba(244, 240, 231, 0.9);
+  color: var(--color-forest);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.surface:hover:not(:disabled) {
+  background: var(--color-ivory);
+}
+.surface[aria-pressed='true'] {
+  background: var(--color-forest);
+  color: var(--color-ivory);
+}
+
+.outline {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--color-forest);
+}
+.outline:hover:not(:disabled) {
+  border-color: var(--color-forest);
+  background: rgba(24, 59, 56, 0.04);
+}

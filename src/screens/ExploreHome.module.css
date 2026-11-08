@@ -1,0 +1,16 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+/* The search sits closer to the feature it introduces */
+.page > :first-child {
+  margin-bottom: calc(var(--section-gap) * -0.25);
+}
+
+@media (min-width: 1024px) {
+  .page > :first-child {
+    margin-bottom: calc(var(--section-gap) * -0.4);
+  }
+}
