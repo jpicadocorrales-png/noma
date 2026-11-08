@@ -68,6 +68,18 @@
   color: var(--color-forest);
 }
 
+.nameLink {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--duration) var(--ease-out);
+}
+
+.nameLink:hover {
+  background-size: 100% 1px;
+}
+
 .note {
   display: -webkit-box;
   -webkit-line-clamp: 2;

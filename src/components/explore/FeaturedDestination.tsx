@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import type { FeaturedDestination as Featured } from '../../data/explore';
 import { Photo } from '../ui/Photo';
 import { Button } from '../ui/Button';
@@ -9,6 +10,7 @@ interface FeaturedDestinationProps {
 }
 
 export function FeaturedDestination({ destination: d }: FeaturedDestinationProps) {
+  const navigate = useNavigate();
   return (
     <section aria-labelledby="featured-title">
       <article className={styles.feature}>
@@ -50,7 +52,7 @@ export function FeaturedDestination({ destination: d }: FeaturedDestinationProps
           </dl>
 
           <div className={styles.actions}>
-            <Button variant="light" iconRight="arrow-right">
+            <Button variant="light" iconRight="arrow-right" onClick={() => navigate(`/destinations/${d.id}`)}>
               Explore {d.name}
             </Button>
             <SaveButton itemId={d.id} placeName={d.name} variant="glass" />

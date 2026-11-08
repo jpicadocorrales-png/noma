@@ -3,6 +3,10 @@
   width: 252px;
 }
 
+.fluid {
+  width: auto !important;
+}
+
 .media {
   position: relative;
   aspect-ratio: 4 / 5;

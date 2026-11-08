@@ -1,4 +1,6 @@
+import { Link } from 'react-router';
 import { SAVED_KIND_LABELS, type SavedItem } from '../../data/saved';
+import { hasDestinationPage } from '../../data/destinations';
 import { Photo } from '../ui/Photo';
 import { SaveButton } from '../ui/SaveButton';
 import { Icon } from '../ui/Icon';
@@ -38,7 +40,15 @@ export function SavedCard({ item, daysAgo, lead, onRemove, onPlan }: SavedCardPr
 
       <div className={styles.body}>
         <p className={`t-meta ${styles.location}`}>{item.location}</p>
-        <h3 className={styles.name}>{item.name}</h3>
+        <h3 className={styles.name}>
+          {hasDestinationPage(item.id) ? (
+            <Link to={`/destinations/${item.id}`} className={styles.nameLink}>
+              {item.name}
+            </Link>
+          ) : (
+            item.name
+          )}
+        </h3>
         <p className={styles.note}>{item.note}</p>
         <div className={styles.foot}>
           <span className={styles.when}>{formatSavedAgo(daysAgo)}</span>

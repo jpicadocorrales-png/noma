@@ -1,15 +1,23 @@
-import { useId, useState, type FormEvent } from 'react';
+import { useEffect, useId, useState, type FormEvent } from 'react';
 import { Icon } from './Icon';
 import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
   placeholder?: string;
+  /** Initial/external value, e.g. from the URL. */
+  value?: string;
+  /** Called on submit. */
   onSearch?: (query: string) => void;
+  /** Called on every keystroke (for live filtering). */
+  onChange?: (query: string) => void;
 }
 
-export function SearchBar({ placeholder = 'Search a city or country', onSearch }: SearchBarProps) {
+export function SearchBar({ placeholder = 'Search a city or country', value = '', onSearch, onChange }: SearchBarProps) {
   const id = useId();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(value);
+
+  // Follow external changes (e.g. back/forward navigation).
+  useEffect(() => setQuery(value), [value]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -31,7 +39,10 @@ export function SearchBar({ placeholder = 'Search a city or country', onSearch }
         autoComplete="off"
         enterKeyHint="search"
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          onChange?.(e.target.value);
+        }}
       />
       <button type="submit" className={styles.submit} aria-label="Search" disabled={!query.trim()}>
         <Icon name="arrow-right" size={18} />

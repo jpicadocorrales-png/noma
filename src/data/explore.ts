@@ -37,6 +37,8 @@ export interface Collection {
   places: number;
   duration: string;
   route: string[];
+  intro: string;
+  stops: { name: string; days: string; note: string }[];
   photo: { id: string; alt: string; focus?: string };
 }
 
@@ -154,6 +156,13 @@ export const collections: Collection[] = [
     places: 12,
     duration: '7 days',
     route: ['Douro', 'Alentejo', 'Comporta'],
+    intro:
+      'This route trades sights for rhythm. It follows the country south from the terraced vineyards of the north to the rice fields and dunes of the Atlantic coast, with no early alarms and at least one lunch a day that runs past four.',
+    stops: [
+      { name: 'Douro Valley', days: 'Days 1–3', note: 'Stay at a quinta among the terraces. Taste after the harvest, take the river train, and let lunch last three hours.' },
+      { name: 'Alentejo', days: 'Days 4–5', note: 'Cork oaks, whitewashed Évora and the slowest dinners in Portugal. Book a farmhouse with a pool.' },
+      { name: 'Comporta', days: 'Days 6–7', note: 'Rice fields, stilt-house restaurants and empty Atlantic beaches to end on.' },
+    ],
     photo: {
       id: '1445019980597-93fa8acb246c',
       alt: 'Lounge chairs on a quiet terrace looking out over a misty mountain valley',
@@ -168,6 +177,13 @@ export const collections: Collection[] = [
     places: 9,
     duration: '10 days',
     route: ['Ko Yao Noi', 'Ko Lanta', 'Ko Libong'],
+    intro:
+      'Thailand’s Andaman coast still has islands where the longtail is the only traffic. This route hops between three of them, getting quieter at each stop.',
+    stops: [
+      { name: 'Ko Yao Noi', days: 'Days 1–4', note: 'Cycle past rubber plantations to beaches facing the karsts of Phang Nga Bay.' },
+      { name: 'Ko Lanta', days: 'Days 5–7', note: 'Long west-coast beaches, mangroves by kayak and the stilt houses of the old town.' },
+      { name: 'Ko Libong', days: 'Days 8–10', note: 'Dugong territory: seagrass meadows, one road and no cash machines.' },
+    ],
     photo: {
       id: '1559128010-7c1ad6e1b6a5',
       alt: 'A forested limestone island rising from turquoise water',
@@ -182,6 +198,12 @@ export const collections: Collection[] = [
     places: 15,
     duration: '2 days',
     route: ['Copenhagen', 'Malmö'],
+    intro:
+      'Two cities, two countries and one bridge, close enough for a single weekend. Spend Saturday in Copenhagen, then cross the Øresund for a slower Sunday in Malmö.',
+    stops: [
+      { name: 'Copenhagen', days: 'Day 1', note: 'Bakeries in Nørrebro, a harbour swim and a long dinner in Vesterbro.' },
+      { name: 'Malmö', days: 'Day 2', note: 'A 35-minute train across the bridge, then falafel, Västra Hamnen and a seaside sauna.' },
+    ],
     photo: {
       id: '1554118811-1e0d58224f24',
       alt: 'A sunlit café with plants, wooden tables and an open kitchen',

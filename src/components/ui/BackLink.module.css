@@ -1,0 +1,22 @@
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  color: var(--color-forest);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back svg {
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.back:hover svg {
+  transform: translateX(-3px);
+}

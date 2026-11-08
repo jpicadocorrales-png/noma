@@ -1,0 +1,206 @@
+/* Shared layout for destination and collection pages */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-1);
+}
+
+/*
+ * Phone:   intro → plan card → list   (actions stay near the top)
+ * Desktop: intro and list on the left, plan card sticky on the right
+ */
+.layout {
+  display: grid;
+  grid-template-areas:
+    'intro'
+    'aside'
+    'body';
+  gap: var(--space-4);
+}
+
+.intro {
+  grid-area: intro;
+  min-width: 0;
+}
+
+.body {
+  grid-area: body;
+  min-width: 0;
+}
+
+.aside {
+  grid-area: aside;
+  min-width: 0;
+}
+
+.lead {
+  max-width: 58ch;
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.blockTitle {
+  margin-bottom: var(--space-2);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+/* Interest tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.tag {
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-sage-soft);
+  color: var(--color-forest);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color var(--duration) var(--ease-out);
+}
+
+.tag:hover {
+  background: var(--color-sage);
+}
+
+/* Numbered editorial list (highlights, stops) */
+.numbered {
+  border-top: 1px solid var(--line);
+}
+
+.numberedItem {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.number {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--color-terracotta);
+}
+
+.itemMeta {
+  color: var(--text-muted);
+}
+
+.itemName {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.itemNameSerif {
+  margin-top: 6px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.05;
+  color: var(--color-forest);
+}
+
+.itemNote {
+  margin-top: 6px;
+  max-width: 52ch;
+  color: var(--text-muted);
+}
+
+/* Planning card */
+.plan {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.planTitle {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.facts {
+  display: grid;
+  margin: 0;
+}
+
+.fact {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.fact dt {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.fact dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.actions {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.actions > * {
+  width: 100%;
+}
+
+.planNote {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.related {
+  padding-top: var(--space-2);
+}
+
+@media (min-width: 1024px) {
+  .page {
+    gap: var(--space-4);
+    padding-top: var(--space-3);
+  }
+
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'intro aside'
+      'body  aside';
+    gap: var(--space-5) var(--space-8);
+    align-items: start;
+  }
+
+  .aside {
+    position: sticky;
+    top: calc(var(--top-bar-height) + 24px);
+  }
+
+  .lead {
+    font-size: 21px;
+  }
+
+  .plan {
+    padding: var(--space-4);
+  }
+}

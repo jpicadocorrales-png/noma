@@ -1,6 +1,5 @@
 import type { Collection } from '../../data/explore';
 import { SectionHeader } from '../ui/SectionHeader';
-import { TextLink } from '../ui/TextLink';
 import { CollectionCard } from './CollectionCard';
 import styles from './CollectionsSection.module.css';
 
@@ -17,7 +16,6 @@ export function CollectionsSection({ collections }: CollectionsSectionProps) {
         eyebrow="Curated by NOMA"
         title="Stories worth slowing down for"
         description="Routes our editors have walked, eaten and slept their way through, ready to shape into your own trip."
-        actions={<TextLink href="#collections" className={styles.all}>All collections</TextLink>}
       />
       <ul className={styles.grid}>
         {collections.map((c, i) => (

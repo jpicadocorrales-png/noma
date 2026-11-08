@@ -1,7 +1,10 @@
+import { useNavigate } from 'react-router';
 import { SearchBar } from '../ui/SearchBar';
 import styles from './WelcomeSection.module.css';
 
 export function WelcomeSection() {
+  const navigate = useNavigate();
+
   return (
     <section className={styles.welcome} aria-labelledby="welcome-title">
       <div className={styles.heading}>
@@ -14,7 +17,7 @@ export function WelcomeSection() {
         <p className={styles.lede}>
           Find places shaped around how you like to travel, then plan the whole journey in one place.
         </p>
-        <SearchBar />
+        <SearchBar onSearch={(q) => navigate(`/discover?q=${encodeURIComponent(q)}`)} />
       </div>
     </section>
   );

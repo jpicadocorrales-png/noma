@@ -6,6 +6,9 @@ import { TripsProvider } from './state/TripsProvider';
 import { SavedProvider } from './state/SavedProvider';
 import { ExploreHome } from './screens/ExploreHome';
 import { MyTrips } from './screens/MyTrips';
+import { Discover } from './screens/Discover';
+import { DestinationDetail } from './screens/DestinationDetail';
+import { CollectionDetail } from './screens/CollectionDetail';
 import { TripDetail } from './screens/TripDetail';
 import { Saved } from './screens/Saved';
 import { Profile } from './screens/Profile';
@@ -21,6 +24,9 @@ export function App() {
               <AppShell>
                 <Routes>
                   <Route index element={<ExploreHome />} />
+                  <Route path="discover" element={<Discover />} />
+                  <Route path="destinations/:destinationId" element={<DestinationDetail />} />
+                  <Route path="collections/:collectionId" element={<CollectionDetail />} />
                   <Route path="trips" element={<MyTrips />} />
                   <Route path="trips/:tripId" element={<TripDetail />} />
                   <Route path="saved" element={<Saved />} />

@@ -21,7 +21,7 @@ export function TrendingSection({ destinations }: TrendingSectionProps) {
         title="Trending destinations"
         actions={
           <div className={styles.actions}>
-            <TextLink href="#trending">See all</TextLink>
+            <TextLink to="/discover">See all</TextLink>
             <RailControls label="destinations" canPrev={canPrev} canNext={canNext} onScroll={scroll} />
           </div>
         }

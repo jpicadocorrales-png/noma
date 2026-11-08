@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import type { Collection } from '../../data/explore';
 import { Photo } from '../ui/Photo';
 import { RouteLine } from '../ui/RouteLine';
@@ -36,9 +37,9 @@ export function CollectionCard({ collection: c, index, layout }: CollectionCardP
           {c.places} places
         </p>
         <h3 className={styles.title}>
-          <a href={`#collection-${c.id}`} className={styles.link}>
+          <Link to={`/collections/${c.id}`} className={styles.link}>
             {c.title}
-          </a>
+          </Link>
         </h3>
         <p className={styles.excerpt}>{c.excerpt}</p>
         <RouteLine stops={c.route} className={styles.route} />
