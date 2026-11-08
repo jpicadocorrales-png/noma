@@ -1,0 +1,91 @@
+.timeline {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.year {
+  display: grid;
+  gap: 8px;
+}
+
+.yearLabel {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--color-forest);
+}
+
+.entries {
+  position: relative;
+}
+
+/* Route line through the year's journeys */
+.entries::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 4px;
+  border-left: 1px dashed var(--line-strong);
+}
+
+.entry {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px 0;
+}
+
+.dot {
+  position: relative;
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-forest);
+  background: var(--bg);
+}
+
+.upcoming .dot {
+  border-color: var(--color-terracotta);
+  background: var(--color-terracotta);
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--duration) var(--ease-out);
+}
+
+.link:hover {
+  background-size: 100% 1px;
+}
+
+.location {
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.when {
+  flex: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.upcoming .when {
+  color: var(--color-forest);
+}

@@ -8,6 +8,7 @@ import { ProgressBar } from '../ui/ProgressBar';
 import { dayDate, useTrips } from '../../state/TripsProvider';
 import { useAssistant } from '../assistant/AssistantProvider';
 import { formatFullDay } from '../../lib/dates';
+import { formatTemp, usePreferences } from '../../state/PreferencesProvider';
 import styles from './ItineraryView.module.css';
 
 interface ItineraryViewProps {
@@ -19,6 +20,7 @@ interface ItineraryViewProps {
 export function ItineraryView({ trip, dayIndex, onDayChange }: ItineraryViewProps) {
   const { isDone, toggleDone } = useTrips();
   const assistant = useAssistant();
+  const { units } = usePreferences().preferences;
   const [dismissed, setDismissed] = useState<Record<string, true>>({});
 
   const day = trip.days[dayIndex];
@@ -42,7 +44,7 @@ export function ItineraryView({ trip, dayIndex, onDayChange }: ItineraryViewProp
         <div className={styles.dayFacts}>
           <span className={styles.weather}>
             <Icon name={day.weather.kind} size={18} />
-            {day.weather.label} · {day.weather.high}° / {day.weather.low}°
+            {day.weather.label} · {formatTemp(day.weather.high, units)} / {formatTemp(day.weather.low, units)}
           </span>
           <span className={styles.progress}>
             <span className={styles.progressText}>

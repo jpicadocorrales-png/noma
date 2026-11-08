@@ -1,0 +1,43 @@
+.section {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.description {
+  margin-top: 4px;
+  max-width: 48ch;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 12px;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+.fieldLabel {
+  color: var(--text-muted);
+}
+
+.hint {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: var(--space-4);
+  }
+}

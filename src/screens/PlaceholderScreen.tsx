@@ -3,7 +3,6 @@ import { useAssistantScreen } from '../components/assistant/AssistantProvider';
 import styles from './PlaceholderScreen.module.css';
 
 const COPY = {
-  profile: { meta: 'Coming soon', title: 'Profile', body: 'Your travel style, preferences and memories, all in one place.' },
   notFound: { meta: 'Off the map', title: 'Page not found', body: 'This route doesn’t lead anywhere yet.' },
 } as const;
 

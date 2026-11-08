@@ -1,0 +1,133 @@
+.header {
+  display: grid;
+  gap: var(--space-4);
+  padding-top: var(--space-2);
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--color-forest);
+  color: var(--color-ivory);
+  font-family: var(--font-serif);
+  font-size: 32px;
+  letter-spacing: 0.02em;
+  box-shadow: inset 0 0 0 3px var(--color-forest), inset 0 0 0 4px rgba(244, 240, 231, 0.35);
+}
+
+.eyebrow {
+  color: var(--text-muted);
+}
+
+.name {
+  margin-top: 6px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-forest);
+}
+
+.meta {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.stat {
+  padding: var(--space-2) 0;
+}
+
+.stat + .stat {
+  padding-left: var(--space-2);
+  border-left: 1px solid var(--line);
+}
+
+.stat dt {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.stat dd {
+  margin: 6px 0 0;
+  font-family: var(--font-serif);
+  font-size: 32px;
+  line-height: 1;
+  color: var(--color-forest);
+  font-variant-numeric: lining-nums;
+}
+
+.statLink {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--color-terracotta);
+}
+
+@media (min-width: 768px) {
+  .avatar {
+    width: 112px;
+    height: 112px;
+    font-size: 44px;
+  }
+
+  .name {
+    font-size: 64px;
+  }
+
+  .stat {
+    padding: var(--space-3) 0;
+  }
+
+  .stat + .stat {
+    padding-left: var(--space-3);
+  }
+
+  .stat dd {
+    font-size: 44px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding-top: var(--space-6);
+    gap: var(--space-5);
+  }
+
+  .identity {
+    gap: var(--space-4);
+  }
+
+  .avatar {
+    width: 136px;
+    height: 136px;
+    font-size: 52px;
+  }
+
+  .name {
+    font-size: 88px;
+  }
+
+  .meta {
+    font-size: 16px;
+  }
+}

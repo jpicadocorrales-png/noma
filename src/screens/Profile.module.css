@@ -1,0 +1,183 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+.layout {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.main,
+.aside {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+  min-width: 0;
+}
+
+/* ---------- Travel style ---------- */
+
+.askLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: start;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-button);
+  background: var(--bg);
+  color: var(--color-forest);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--duration) var(--ease-out);
+}
+
+.askLink:hover {
+  border-color: var(--color-forest);
+}
+
+.askLink svg {
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.askLink:hover svg {
+  transform: translateX(3px);
+}
+
+/* Same mark as the Ask NOMA trigger */
+.askMark {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+
+.askMark::after {
+  content: '';
+  position: absolute;
+  inset: 3.5px;
+  border-radius: 50%;
+  background: var(--color-terracotta);
+}
+
+/* ---------- Settings ---------- */
+
+.settingRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+/* Switches always sit to the right of their label */
+.switchRow {
+  flex-wrap: nowrap;
+}
+
+.switchRow > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.settingLabel {
+  display: block;
+  font-weight: 700;
+}
+
+.settingHint {
+  margin-top: 2px;
+  max-width: 36ch;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.groupLabel {
+  margin-top: var(--space-2);
+  color: var(--text-muted);
+}
+
+.groupLabel + .settingRow {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.selectWrap {
+  position: relative;
+}
+
+.select {
+  appearance: none;
+  height: 44px;
+  min-width: 220px;
+  padding: 0 40px 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-button);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--duration) var(--ease-out);
+}
+
+.select:hover,
+.select:focus-visible {
+  border-color: var(--color-forest);
+}
+
+.selectIcon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  color: var(--text-muted);
+  transform: translateY(-50%) rotate(90deg);
+  pointer-events: none;
+}
+
+/* ---------- Preview note ---------- */
+
+.preview {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  padding: var(--space-3);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-card);
+}
+
+.previewTitle {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.previewBody {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-3);
+    align-items: start;
+  }
+
+  .main,
+  .aside {
+    gap: var(--space-3);
+  }
+
+  .aside {
+    position: sticky;
+    top: calc(var(--top-bar-height) + 24px);
+  }
+}
