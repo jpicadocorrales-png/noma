@@ -33,6 +33,7 @@ export function ActivityRow({ activity: a, booking, done, isLast, onToggle }: Ac
         <p className={`t-meta ${styles.category}`}>
           {CATEGORY_LABELS[a.category]}
           {a.duration && <span className={styles.duration}> · {a.duration}</span>}
+          {a.addedBy === 'noma' && <span className={styles.added}>Added with NOMA</span>}
         </p>
         <h3 className={styles.title}>{a.title}</h3>
         <p className={styles.place}>{a.place}</p>

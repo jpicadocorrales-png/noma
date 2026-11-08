@@ -85,6 +85,18 @@
   letter-spacing: 0.06em;
 }
 
+.added {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: var(--radius-pill);
+  background: var(--color-sage-soft);
+  color: var(--color-forest);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  vertical-align: 1px;
+}
+
 .title {
   margin-top: 4px;
   font-size: 17px;

@@ -21,6 +21,8 @@ export interface Activity {
   bookingId?: string;
   /** How to reach the next stop, e.g. "8 min walk". */
   transit?: string;
+  /** Set when the stop came from a plan change the traveler approved. */
+  addedBy?: 'noma';
 }
 
 export interface WeatherAlert {
@@ -44,6 +46,8 @@ export interface TripDay {
   summary: string;
   weather: Weather;
   items: Activity[];
+  /** Present when an approved plan change rewrote part of this day. */
+  change?: { id: string; note: string };
 }
 
 export type BookingKind = 'flight' | 'train' | 'stay' | 'dining' | 'experience';
@@ -76,6 +80,7 @@ export interface Expense {
   label: string;
   amount: number;
   dayIndex: number;
+  source?: 'noma';
 }
 
 export interface Budget {

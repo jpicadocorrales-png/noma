@@ -1,0 +1,149 @@
+.reply {
+  min-width: 0;
+}
+
+.text {
+  display: grid;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.extras {
+  animation: extras-in var(--duration) var(--ease-out);
+}
+
+@keyframes extras-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+/* Bullets drawn as small route stops */
+.bullets {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.bullets li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.bullets li::before {
+  content: '';
+  position: absolute;
+  top: 0.55em;
+  left: 2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-forest);
+}
+
+.places {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.place {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-button);
+  background: var(--bg);
+  transition: border-color var(--duration) var(--ease-out);
+}
+
+.place:hover {
+  border-color: var(--color-forest);
+}
+
+.thumb {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+}
+
+.placeText {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.placeName {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  line-height: 1.1;
+  color: var(--color-forest);
+}
+
+.placeMeta {
+  margin-top: 3px;
+  color: var(--text-muted);
+  font-size: 9px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron {
+  flex: none;
+  color: var(--text-subtle);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 12px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-forest);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.followUps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.followUp {
+  padding: 7px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-forest);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--duration) var(--ease-out),
+    background-color var(--duration) var(--ease-out);
+}
+
+.followUp:hover {
+  border-color: var(--color-forest);
+  background: rgba(24, 59, 56, 0.04);
+}

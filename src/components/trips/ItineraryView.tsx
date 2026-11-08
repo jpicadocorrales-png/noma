@@ -5,6 +5,7 @@ import { ActivityRow } from './ActivityRow';
 import { WeatherAlert } from './WeatherAlert';
 import { Icon } from '../ui/Icon';
 import { ProgressBar } from '../ui/ProgressBar';
+import { Button } from '../ui/Button';
 import { dayDate, useTrips } from '../../state/TripsProvider';
 import { useAssistant } from '../assistant/AssistantProvider';
 import { formatFullDay } from '../../lib/dates';
@@ -18,7 +19,7 @@ interface ItineraryViewProps {
 }
 
 export function ItineraryView({ trip, dayIndex, onDayChange }: ItineraryViewProps) {
-  const { isDone, toggleDone } = useTrips();
+  const { isDone, toggleDone, revertChange } = useTrips();
   const assistant = useAssistant();
   const { units } = usePreferences().preferences;
   const [dismissed, setDismissed] = useState<Record<string, true>>({});
@@ -54,6 +55,19 @@ export function ItineraryView({ trip, dayIndex, onDayChange }: ItineraryViewProp
           </span>
         </div>
       </header>
+
+      {day.change && (
+        <aside className={styles.changed} aria-label="Plan updated">
+          <span className={styles.changedMark} aria-hidden="true" />
+          <div className={styles.changedText}>
+            <p className={styles.changedTitle}>Updated with NOMA</p>
+            <p className={styles.changedBody}>{day.change.note}</p>
+          </div>
+          <Button size="sm" variant="secondary" onClick={() => revertChange(day.change!.id)}>
+            Undo
+          </Button>
+        </aside>
+      )}
 
       {alert && (
         <WeatherAlert

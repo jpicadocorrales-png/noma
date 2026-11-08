@@ -134,10 +134,147 @@
   border-bottom: 1px solid var(--line);
 }
 
+/* A conversation gets a stable, taller panel */
+.tall {
+  height: min(86dvh, 680px);
+  max-height: none;
+}
+
+.headerText {
+  min-width: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+}
+
+.newChat {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-forest);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--duration) var(--ease-out);
+}
+
+.newChat:hover:not(:disabled) {
+  border-color: var(--color-forest);
+}
+
+.newChat:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 .panelTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.01em;
+}
+
+/* Honest label: replies are prepared, not generated */
+.demo {
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-sand-soft);
+  color: var(--color-charcoal);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.demoNote {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--color-sand-soft);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ---------- Conversation ---------- */
+
+.messages {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.userRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nomaRow {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+/* NOMA's mark, as on the trigger */
+.avatar {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--color-forest);
+}
+
+.avatar::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: var(--color-terracotta);
+}
+
+.typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+}
+
+.typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-subtle);
+  animation: typing 1.1s infinite ease-in-out;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
 }
 
 .context {
@@ -233,13 +370,7 @@
   color: var(--color-forest);
 }
 
-.exchange {
-  display: grid;
-  gap: var(--space-2);
-}
-
 .userMsg {
-  justify-self: end;
   max-width: 85%;
   padding: 10px 14px;
   border-radius: 14px 14px 4px 14px;
@@ -248,12 +379,8 @@
   font-size: 14px;
 }
 
-.note {
-  color: var(--text-muted);
-  font-size: 13px;
-}
-
 .composer {
+  flex: none;
   display: flex;
   align-items: center;
   gap: var(--space-1);
@@ -305,10 +432,14 @@
 @media (min-width: 768px) {
   .panel {
     inset: auto var(--gutter) calc(var(--bottom-nav-height) + var(--safe-bottom) + 16px) auto;
-    width: 380px;
+    width: 420px;
     padding: var(--space-3);
     border-radius: 20px;
     box-shadow: var(--shadow-float);
+  }
+
+  .tall {
+    height: min(680px, calc(100dvh - 140px));
   }
 
   .backdrop {

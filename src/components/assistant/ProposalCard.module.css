@@ -1,0 +1,125 @@
+.card {
+  margin-top: 12px;
+  padding: 14px 16px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-button);
+  background: var(--bg);
+  transition: border-color var(--duration) var(--ease-out);
+}
+
+.applied {
+  border-color: var(--color-sage);
+}
+
+.meta {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.title {
+  margin-top: 4px;
+  font-weight: 700;
+}
+
+.diff {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.diff li {
+  display: grid;
+  grid-template-columns: 16px 44px minmax(0, 1fr);
+  align-items: baseline;
+  font-size: 14px;
+}
+
+.sign {
+  font-weight: 700;
+}
+
+.time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.removed {
+  color: var(--text-subtle);
+}
+
+.removed .what {
+  text-decoration: line-through;
+}
+
+.added .sign {
+  color: var(--color-forest);
+}
+
+.added .what {
+  font-weight: 600;
+}
+
+.effects {
+  display: grid;
+  gap: 4px;
+  margin: 10px 0 0;
+  font-size: 13px;
+}
+
+.effects div {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.effects dt {
+  color: var(--text-muted);
+}
+
+.effects dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: var(--color-forest);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.statusIcon {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-forest);
+  color: var(--color-ivory);
+}
+
+.view {
+  margin-left: auto;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.statusMuted {
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 14px;
+}

@@ -13,7 +13,7 @@ export function BudgetView({ trip }: { trip: Trip }) {
   const categoryLabel = new Map(trip.budget.categories.map((c) => [c.id, c.label]));
   const lines = [
     ...trip.bookings.filter((b) => b.amount > 0).map((b) => ({ id: b.id, label: b.title, sub: b.provider, amount: b.amount, dayIndex: b.dayIndex, categoryId: b.categoryId })),
-    ...trip.budget.expenses.map((e) => ({ id: e.id, label: e.label, sub: 'Added manually', amount: e.amount, dayIndex: e.dayIndex, categoryId: e.categoryId })),
+    ...trip.budget.expenses.map((e) => ({ id: e.id, label: e.label, sub: e.source === 'noma' ? 'Added with NOMA' : 'Added manually', amount: e.amount, dayIndex: e.dayIndex, categoryId: e.categoryId })),
   ].sort((a, b) => a.dayIndex - b.dayIndex || b.amount - a.amount);
 
   return (

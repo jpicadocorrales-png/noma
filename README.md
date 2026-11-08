@@ -69,6 +69,8 @@ All values live in `src/styles/tokens.css`; components should reference tokens, 
 - ✅ My Trips: trip list, day-by-day itinerary, bookings and budget (`/trips/kyoto`)
 - ✅ Saved: places synced with Explore bookmarks, filters, undo
 - ✅ Profile: travel style, journeys timeline, settings
-- ⏳ Ask NOMA assistant backend (UI and screen context only — not connected)
+- ✅ Discover, destination pages and collection stories
+- ✅ Ask NOMA **demo**: prepared, context-aware replies to every suggestion in the app, built from live trip, saved and preference data (`src/components/assistant/demo/replies.ts`). The Day 03 rain alert walks through the full flow: NOMA proposes a plan change, shows exactly what changes, and applies it only when the traveler approves (undoable).
+- ⏳ Live model behind Ask NOMA
 
 Sample data is dated relative to today, and changes are stored only in the browser. Profile → "Reset sample data" restores the preview.

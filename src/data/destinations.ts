@@ -18,6 +18,10 @@ export interface DestinationDetail {
   bestSeason: string;
   idealStay: string;
   gettingAround: string;
+  /** Months (1–12) when the destination is at its best. */
+  seasonMonths: number[];
+  seasonNote: string;
+  firstVisit: string;
   highlights: Highlight[];
 }
 
@@ -34,6 +38,9 @@ const DETAILS: DestinationDetail[] = [
     bestSeason: 'Nov – Dec · Apr',
     idealStay: '4–5 days',
     gettingAround: 'Buses, bikes, walking',
+    seasonMonths: [4, 11, 12],
+    seasonNote: 'The maples peak in late November and cherry blossom arrives in early April. Summer is hot and humid; winter is quiet and clear.',
+    firstVisit: 'Stay in Higashiyama so the old lanes are on your doorstep, and give Arashiyama and Fushimi Inari a morning each, before the crowds arrive.',
     highlights: [
       { name: 'Kiyomizu-dera', kind: 'Temple', note: 'Arrive at opening to have the wooden stage almost to yourself.' },
       { name: 'Philosopher’s Path', kind: 'Walk', note: 'Two kilometres of canal-side maples between temples.' },
@@ -52,6 +59,9 @@ const DETAILS: DestinationDetail[] = [
     bestSeason: 'Mar – Jun · Sep – Oct',
     idealStay: '3–4 days',
     gettingAround: 'Trams, metro, walking',
+    seasonMonths: [3, 4, 5, 6, 9, 10],
+    seasonNote: 'Spring and early autumn are warm without August’s heat and crowds. Winter is mild but often rainy.',
+    firstVisit: 'Stay in Príncipe Real or Chiado. Walk Alfama on day one, and keep half a day for Belém and another for Sintra.',
     highlights: [
       { name: 'Alfama', kind: 'Neighbourhood', note: 'Get lost below the castle; fado drifts out after dark.' },
       { name: 'Tram 28', kind: 'Ride', note: 'Board at Martim Moniz early to get a seat by the window.' },
@@ -70,6 +80,9 @@ const DETAILS: DestinationDetail[] = [
     bestSeason: 'Mar – May · Oct – Nov',
     idealStay: '5–7 days',
     gettingAround: 'Metro and JR lines',
+    seasonMonths: [3, 4, 5, 10, 11],
+    seasonNote: 'Spring blossom and autumn leaves come with the best weather. July and August are hot and humid; winter is cold but bright.',
+    firstVisit: 'Split your stay between two neighbourhoods, such as Shibuya and Asakusa, so each half of the city feels close. Get a Suica card on day one.',
     highlights: [
       { name: 'Omoide Yokochō', kind: 'Food', note: 'Smoky yakitori stalls in the shadow of Shinjuku Station.' },
       { name: 'Meiji Jingū', kind: 'Shrine', note: 'A forest shrine a few minutes’ walk from Harajuku.' },
@@ -88,6 +101,9 @@ const DETAILS: DestinationDetail[] = [
     bestSeason: 'May – Jun · Sep',
     idealStay: '3 days',
     gettingAround: 'Coastal trains, footpaths',
+    seasonMonths: [5, 6, 9],
+    seasonNote: 'May, June and September are warm enough to swim, with fewer people than July and August. Many places close from November to March.',
+    firstVisit: 'Stay in one village rather than moving between five. Vernazza or Manarola work well: hike one stretch of the path and take the train back.',
     highlights: [
       { name: 'Sentiero Azzurro', kind: 'Hike', note: 'The classic coastal path from Monterosso to Vernazza.' },
       { name: 'Manarola at dusk', kind: 'Viewpoint', note: 'The postcard view from the path above the harbour.' },
@@ -105,6 +121,9 @@ const DETAILS: DestinationDetail[] = [
     bestSeason: 'Apr – Jun · Sep – Oct',
     idealStay: '2–3 days',
     gettingAround: 'Walking, metro, funicular',
+    seasonMonths: [4, 5, 6, 9, 10],
+    seasonNote: 'Spring and early autumn are mild and mostly dry. Late September adds the grape harvest up the Douro valley.',
+    firstVisit: 'Stay near Ribeira or Bolhão, cross to Gaia for the port lodges, and save one evening for sunset from the Jardim do Morro.',
     highlights: [
       { name: 'Ribeira', kind: 'Neighbourhood', note: 'Waterfront arcades beneath the Dom Luís I bridge.' },
       { name: 'Port lodges, Gaia', kind: 'Tasting', note: 'Tour a cellar, then taste tawnies on a terrace.' },
@@ -122,6 +141,9 @@ const DETAILS: DestinationDetail[] = [
     bestSeason: 'Apr – Oct',
     idealStay: '7–10 days',
     gettingAround: 'Private driver, scooter',
+    seasonMonths: [4, 5, 6, 7, 8, 9, 10],
+    seasonNote: 'April to October is the dry season. From November to March, expect heavy afternoon rain, though the highlands are greener and quieter.',
+    firstVisit: 'Split the trip between Ubud and the coast, and hire a driver for the highland temples rather than riding a scooter on mountain roads.',
     highlights: [
       { name: 'Ulun Danu Beratan', kind: 'Temple', note: 'A lake temple that seems to float at sunrise.' },
       { name: 'Jatiluwih', kind: 'Walk', note: 'UNESCO-listed rice terraces, far quieter than Tegallalang.' },
@@ -139,6 +161,9 @@ const DETAILS: DestinationDetail[] = [
     bestSeason: 'Year-round',
     idealStay: '1 day',
     gettingAround: 'Self-drive on the Ring Road',
+    seasonMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    seasonNote: 'It’s reachable all year. Summer brings near-endless light; from September to March, clear nights can bring the aurora.',
+    firstVisit: 'Treat it as a stop on a Ring Road drive. Stay in Höfn and come at sunrise or sunset, when the light on Vestrahorn is at its best.',
     highlights: [
       { name: 'Vestrahorn reflections', kind: 'Viewpoint', note: 'Low tide and no wind give you the mirror shot.' },
       { name: 'Viking Café', kind: 'Food', note: 'Waffles and coffee where you pay the small land fee.' },
@@ -156,6 +181,9 @@ const DETAILS: DestinationDetail[] = [
     bestSeason: 'Oct – Apr',
     idealStay: '2 days',
     gettingAround: 'Overnight boat, kayak',
+    seasonMonths: [10, 11, 12, 1, 2, 3, 4],
+    seasonNote: 'October to April is dry and mild. Summer is hot, with storms that can cancel sailings.',
+    firstVisit: 'Book an overnight boat into Lan Ha Bay rather than a day trip, and pick one that includes kayaks.',
     highlights: [
       { name: 'Lan Ha Bay', kind: 'Boat', note: 'Quieter than Hạ Long proper, with better kayaking.' },
       { name: 'Sửng Sốt Cave', kind: 'Sight', note: 'Vast chambers; go early before the tour groups.' },
@@ -173,6 +201,9 @@ const DETAILS: DestinationDetail[] = [
     bestSeason: 'May · Sep – Oct',
     idealStay: '3–4 days',
     gettingAround: 'Bus, walking, boat',
+    seasonMonths: [5, 9, 10],
+    seasonNote: 'May and late September bring a warm sea and thinner crowds. July and August are packed, and many hotels close in winter.',
+    firstVisit: 'Stay in Imerovigli or Firostefani for caldera views, walk to Oia instead of taking the bus, and swim at the red and black beaches in the south.',
     highlights: [
       { name: 'Fira to Oia', kind: 'Hike', note: 'Ten kilometres along the caldera rim; start early.' },
       { name: 'Caldera by boat', kind: 'Experience', note: 'Sunset from the water, away from the crowds.' },
@@ -190,6 +221,9 @@ const DETAILS: DestinationDetail[] = [
     bestSeason: 'Sep – Mar',
     idealStay: '4–5 days',
     gettingAround: 'Guided tours, rental car',
+    seasonMonths: [9, 10, 11, 12, 1, 2, 3],
+    seasonNote: 'September to March brings the dark skies the aurora needs. In June the midnight sun means no darkness at all.',
+    firstVisit: 'Book a guided aurora chase early in your stay, so you have spare nights if the first one is cloudy.',
     highlights: [
       { name: 'Aurora chase', kind: 'Experience', note: 'Guides drive toward clear skies, sometimes to Finland.' },
       { name: 'Fjellheisen', kind: 'Viewpoint', note: 'The city and fjord from 420 metres up.' },

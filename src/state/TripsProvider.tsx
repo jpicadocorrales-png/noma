@@ -1,9 +1,11 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { createSampleTrips, type Trip } from '../data/trips';
+import { applyPlanChanges } from '../data/planChanges';
 import { addDays, daysBetween, parseISODate, startOfDay } from '../lib/dates';
 import { loadJSON, saveJSON } from '../lib/storage';
 
 const DONE_KEY = 'noma.trips.done.v1';
+const CHANGES_KEY = 'noma.trips.changes.v1';
 
 export type TripStatus = 'idea' | 'upcoming' | 'ongoing' | 'past';
 
@@ -12,20 +14,26 @@ interface TripsContextValue {
   trips: Trip[];
   isDone: (activityId: string) => boolean;
   toggleDone: (activityId: string) => void;
+  /** Plan changes the traveler approved (e.g. from Ask NOMA). */
+  isApplied: (changeId: string) => boolean;
+  applyChange: (changeId: string) => void;
+  revertChange: (changeId: string) => void;
 }
 
 const TripsContext = createContext<TripsContextValue | null>(null);
 
 /**
- * Trips are sample data for now. Only what the traveler changes (checked-off
- * activities) is persisted, in this browser.
+ * Trips are sample data. Only what the traveler changes is persisted, in
+ * this browser: checked-off activities and approved plan changes.
  */
 export function TripsProvider({ children }: { children: ReactNode }) {
   const today = useMemo(() => startOfDay(new Date()), []);
-  const trips = useMemo(() => createSampleTrips(today), [today]);
   const [done, setDone] = useState<Record<string, true>>(() => loadJSON(DONE_KEY, {}));
+  const [applied, setApplied] = useState<string[]>(() => loadJSON(CHANGES_KEY, []));
+  const trips = useMemo(() => applyPlanChanges(createSampleTrips(today), applied), [today, applied]);
 
   useEffect(() => saveJSON(DONE_KEY, done), [done]);
+  useEffect(() => saveJSON(CHANGES_KEY, applied), [applied]);
 
   const toggleDone = useCallback((id: string) => {
     setDone((prev) => {
@@ -36,9 +44,23 @@ export function TripsProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  const applyChange = useCallback(
+    (id: string) => setApplied((prev) => (prev.includes(id) ? prev : [...prev, id])),
+    [],
+  );
+  const revertChange = useCallback((id: string) => setApplied((prev) => prev.filter((c) => c !== id)), []);
+
   const value = useMemo<TripsContextValue>(
-    () => ({ today, trips, isDone: (id) => Boolean(done[id]), toggleDone }),
-    [today, trips, done, toggleDone],
+    () => ({
+      today,
+      trips,
+      isDone: (id) => Boolean(done[id]),
+      toggleDone,
+      isApplied: (id) => applied.includes(id),
+      applyChange,
+      revertChange,
+    }),
+    [today, trips, done, toggleDone, applied, applyChange, revertChange],
   );
 
   return <TripsContext.Provider value={value}>{children}</TripsContext.Provider>;
