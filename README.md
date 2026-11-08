@@ -21,6 +21,7 @@ npm run preview  # serve the production build
 ## Stack
 
 - React 19 + TypeScript, built with Vite
+- React Router (shareable URLs; `vercel.json` rewrites for SPA hosting)
 - CSS Modules + global design tokens (no UI framework)
 - Google Fonts: Manrope (interface) and DM Serif Display (editorial)
 - Photography served from the Unsplash image CDN (prototype only)
@@ -36,8 +37,12 @@ src/
     layout/        AppShell, TopBar (desktop nav), BottomNav (mobile/tablet), Wordmark
     assistant/     AskNoma floating entry point and panel
     explore/       Explore Home sections and cards
-  data/            static editorial content (shaped like a future API)
-  screens/         ExploreHome and placeholder screens
+    trips/         itinerary, bookings, budget and trip cards
+    saved/         saved place cards
+    profile/       profile header, journeys timeline, sections
+  state/           providers for trips, saved places and preferences (localStorage)
+  data/            sample content (shaped like a future API)
+  screens/         ExploreHome, MyTrips, TripDetail, Saved, Profile
 ```
 
 ## Visual identity — "Modern Explorer"
@@ -61,5 +66,9 @@ All values live in `src/styles/tokens.css`; components should reference tokens, 
 ## Status
 
 - ✅ Design foundation and Explore Home (responsive)
-- ⏳ My Trips, Saved, Profile (placeholders)
-- ⏳ Ask NOMA assistant backend (UI only — not connected)
+- ✅ My Trips: trip list, day-by-day itinerary, bookings and budget (`/trips/kyoto`)
+- ✅ Saved: places synced with Explore bookmarks, filters, undo
+- ✅ Profile: travel style, journeys timeline, settings
+- ⏳ Ask NOMA assistant backend (UI and screen context only — not connected)
+
+Sample data is dated relative to today, and changes are stored only in the browser. Profile → "Reset sample data" restores the preview.
