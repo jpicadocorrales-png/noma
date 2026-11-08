@@ -25,7 +25,7 @@ export function DestinationCard({ destination: d, index }: DestinationCardProps)
         <span className={`t-meta ${styles.rank}`} aria-hidden="true">
           {rank}
         </span>
-        <SaveButton placeName={d.name} className={styles.save} />
+        <SaveButton itemId={d.id} placeName={d.name} className={styles.save} />
       </div>
 
       <div className={styles.body}>

@@ -1,0 +1,157 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.header {
+  padding-top: var(--space-2);
+}
+
+.eyebrow {
+  color: var(--text-muted);
+  margin-bottom: var(--space-1-5);
+}
+
+.title {
+  max-width: 12ch;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--color-forest);
+  text-wrap: balance;
+}
+
+.lede {
+  margin-top: var(--space-2);
+  max-width: 40ch;
+  color: var(--text-muted);
+}
+
+/* Filters scroll sideways on narrow screens instead of wrapping */
+.filters {
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filters > div {
+  display: inline-flex;
+}
+
+.filters button {
+  flex: none;
+}
+
+/* ---------- Grid ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4) var(--space-2);
+}
+
+/* Lead card spans the full width on phones and tablets */
+.editorial > :first-child {
+  grid-column: 1 / -1;
+}
+
+.editorial > :first-child article > div:first-child {
+  aspect-ratio: 4 / 3;
+}
+
+.empty {
+  padding: var(--space-6) var(--space-3);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-card);
+  text-align: center;
+}
+
+.emptyTitle {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  color: var(--color-forest);
+}
+
+.emptyBody {
+  margin: 8px auto 0;
+  max-width: 36ch;
+  color: var(--text-muted);
+}
+
+.emptyLink {
+  display: inline-block;
+  margin-top: var(--space-2);
+  color: var(--color-forest);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (min-width: 768px) {
+  .title {
+    max-width: none;
+    font-size: 72px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5) var(--space-3);
+  }
+
+  .editorial > :first-child article > div:first-child {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page {
+    gap: var(--space-4);
+  }
+
+  .header {
+    padding-top: var(--space-6);
+  }
+
+  .title {
+    font-size: 96px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /*
+   * Seven-card magazine layout:
+   * [ lead 2×2 ][ 2 ][ 3 ]
+   * [         ][ 4 ][ 5 ]
+   * [   6 wide  ][  7 wide  ]
+   */
+  .editorial > :first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .editorial > :first-child article > div:first-child {
+    aspect-ratio: auto;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .editorial > :nth-child(6),
+  .editorial > :nth-child(7) {
+    grid-column: span 2;
+  }
+
+  .editorial > :nth-child(6) article > div:first-child,
+  .editorial > :nth-child(7) article > div:first-child {
+    aspect-ratio: 16 / 9;
+  }
+}

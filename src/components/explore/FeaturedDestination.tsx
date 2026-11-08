@@ -53,7 +53,7 @@ export function FeaturedDestination({ destination: d }: FeaturedDestinationProps
             <Button variant="light" iconRight="arrow-right">
               Explore {d.name}
             </Button>
-            <SaveButton placeName={d.name} variant="glass" />
+            <SaveButton itemId={d.id} placeName={d.name} variant="glass" />
           </div>
         </div>
       </article>
