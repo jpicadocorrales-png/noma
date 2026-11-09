@@ -71,6 +71,7 @@ All values live in `src/styles/tokens.css`; components should reference tokens, 
 - ✅ Profile: travel style, journeys timeline, settings
 - ✅ Discover, destination pages and collection stories
 - ✅ Ask NOMA **demo**: prepared, context-aware replies to every suggestion in the app, built from live trip, saved and preference data (`src/components/assistant/demo/replies.ts`). The Day 03 rain alert walks through the full flow: NOMA proposes a plan change, shows exactly what changes, and applies it only when the traveler approves (undoable).
+- ✅ Link previews: Open Graph / X card tags and a 1200 × 630 share image (`public/og-image.jpg`, source in `design/og-image.html`)
 - ⏳ Live model behind Ask NOMA
 
 Sample data is dated relative to today, and changes are stored only in the browser. Profile → "Reset sample data" restores the preview.

@@ -1,0 +1,176 @@
+<!doctype html>
+<!--
+  Source for public/og-image.jpg, the link-preview image (1200 × 630).
+  To update it: edit this file, open it in a browser at exactly 1200 × 630
+  (e.g. Chrome DevTools device mode), capture the page as JPEG, and replace
+  public/og-image.jpg. Keep it under ~300 KB so WhatsApp shows it.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@500;600;700;800&display=block" rel="stylesheet" />
+<style>
+  :root {
+    --forest: #183b38;
+    --ivory: #f4f0e7;
+    --sand: #d7c7aa;
+    --terracotta: #e97852;
+    --charcoal: #252b2a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    display: grid;
+    grid-template-columns: 600px 600px;
+    background: var(--ivory);
+    color: var(--charcoal);
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 64px 40px 60px 72px;
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 4px;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 0.34em;
+    color: var(--forest);
+    line-height: 1;
+  }
+  .wordmark i {
+    width: 8px; height: 8px;
+    margin-left: -0.26em; margin-bottom: 2px;
+    border-radius: 50%;
+    background: var(--terracotta);
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 78px;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    color: var(--forest);
+  }
+  h1 em { font-style: italic; }
+
+  .lede {
+    margin-top: 24px;
+    max-width: 30ch;
+    font-size: 23px;
+    line-height: 1.45;
+    font-weight: 500;
+    color: rgba(37, 43, 42, 0.72);
+  }
+
+  /* Route line: Explore → Plan → Adapt */
+  .route { display: flex; width: 400px; }
+  .stop {
+    position: relative;
+    flex: 1;
+    display: flex; flex-direction: column; gap: 12px;
+    align-items: center;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(37, 43, 42, 0.62);
+  }
+  .stop::before {
+    content: ''; position: absolute; top: 5px; left: 0; right: 0;
+    border-top: 1.5px dashed rgba(24, 59, 56, 0.4);
+  }
+  .stop:first-child { align-items: flex-start; }
+  .stop:first-child::before { left: 6px; }
+  .stop:last-child { align-items: flex-end; }
+  .stop:last-child::before { right: 6px; }
+  .dot {
+    position: relative;
+    width: 12px; height: 12px; border-radius: 50%;
+    border: 2px solid var(--forest); background: var(--ivory);
+  }
+  .stop:first-child .dot { background: var(--forest); }
+  .stop:last-child .dot { background: var(--terracotta); border-color: var(--terracotta); }
+
+  .photo {
+    position: relative;
+    margin: 24px 24px 24px 0;
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--forest);
+  }
+  .photo img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 42%;
+    display: block;
+  }
+  .photo::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(16,48,45,0.35) 0%, rgba(16,48,45,0) 28%, rgba(16,48,45,0) 62%, rgba(16,48,45,0.7) 100%);
+  }
+  .tag {
+    position: absolute; z-index: 1;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(244, 240, 231, 0.94);
+    color: var(--forest);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .tag.top { top: 24px; left: 24px; }
+  .coords {
+    position: absolute; z-index: 1; top: 30px; right: 26px;
+    color: rgba(244, 240, 231, 0.9);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+  }
+  .caption {
+    position: absolute; z-index: 1; left: 28px; bottom: 26px;
+    color: var(--ivory);
+  }
+  .caption small {
+    display: block;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(244, 240, 231, 0.85);
+  }
+  .caption strong {
+    display: block; margin-top: 4px;
+    font-family: 'DM Serif Display', serif; font-weight: 400;
+    font-size: 54px; line-height: 1;
+  }
+</style>
+</head>
+<body>
+  <section class="copy">
+    <span class="wordmark">NOMA<i></i></span>
+
+    <div>
+      <h1>The journey, <em>thoughtfully</em> designed.</h1>
+      <p class="lede">Your AI-powered travel companion, from the first idea to the final destination.</p>
+    </div>
+
+    <div class="route">
+      <span class="stop"><span class="dot"></span>Explore</span>
+      <span class="stop"><span class="dot"></span>Plan</span>
+      <span class="stop"><span class="dot"></span>Adapt</span>
+    </div>
+  </section>
+
+  <figure class="photo">
+    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=85" alt="" />
+    <span class="tag top">Day 03</span>
+    <span class="coords">35.0116° N · 135.7681° E</span>
+    <figcaption class="caption">
+      <small>Kyoto / JP · Kansai</small>
+      <strong>Kyoto</strong>
+    </figcaption>
+  </figure>
+</body>
+</html>
