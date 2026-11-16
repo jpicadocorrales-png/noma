@@ -10,7 +10,7 @@
 <meta charset="utf-8" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@500;600;700;800&display=block" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=DM+Serif+Display:ital@0;1&family=Manrope:wght@500;600;700;800&display=block" rel="stylesheet" />
 <style>
   :root {
     --forest: #183b38;
@@ -39,17 +39,19 @@
 
   .wordmark {
     display: inline-flex;
-    align-items: flex-end;
-    gap: 4px;
-    font-size: 26px;
+    align-items: baseline;
+    font-family: 'Bricolage Grotesque', 'Manrope', sans-serif;
     font-weight: 800;
-    letter-spacing: 0.34em;
+    font-optical-sizing: auto;
+    font-size: 40px;
+    letter-spacing: -0.055em;
     color: var(--forest);
     line-height: 1;
   }
   .wordmark i {
-    width: 8px; height: 8px;
-    margin-left: -0.26em; margin-bottom: 2px;
+    display: inline-block;
+    width: 0.2em; height: 0.2em;
+    margin-left: 0.04em;
     border-radius: 50%;
     background: var(--terracotta);
   }
@@ -149,7 +151,7 @@
 </head>
 <body>
   <section class="copy">
-    <span class="wordmark">NOMA<i></i></span>
+    <span class="wordmark">noma<i></i></span>
 
     <div>
       <h1>The journey, <em>thoughtfully</em> designed.</h1>

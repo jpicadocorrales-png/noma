@@ -1,21 +1,34 @@
 .wordmark {
   display: inline-flex;
-  align-items: flex-end;
-  gap: 3px;
-  font-size: 17px;
+  align-items: baseline;
+  font-family: 'Bricolage Grotesque', var(--font-sans);
   font-weight: 800;
-  letter-spacing: 0.34em;
-  color: var(--color-forest);
+  font-optical-sizing: auto;
+  letter-spacing: -0.055em;
   line-height: 1;
-  /* letter-spacing adds trailing space; pull the dot back in */
-  margin-right: -0.34em;
+  color: var(--color-forest);
+  text-decoration: none;
+  /* size is set inline via the `size` prop */
 }
 
+.wordmark:hover {
+  color: var(--color-forest-strong);
+}
+
+.inverse {
+  color: var(--color-ivory);
+}
+
+.inverse:hover {
+  color: #ffffff;
+}
+
+/* Terracotta full stop: scales with the letters */
 .dot {
-  width: 5px;
-  height: 5px;
-  margin-left: -0.28em;
-  margin-bottom: 1px;
+  display: inline-block;
+  width: 0.2em;
+  height: 0.2em;
+  margin-left: 0.04em;
   border-radius: 50%;
   background: var(--color-terracotta);
 }
