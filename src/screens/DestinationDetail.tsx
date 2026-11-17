@@ -6,6 +6,8 @@ import { BackLink } from '../components/ui/BackLink';
 import { Button, ButtonLink } from '../components/ui/Button';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { DestinationCard } from '../components/explore/DestinationCard';
+import { PlaceCard } from '../components/places/PlaceCard';
+import { placesIn } from '../data/places';
 import { useSaved } from '../state/SavedProvider';
 import { useTrips } from '../state/TripsProvider';
 import { PlaceholderScreen } from './PlaceholderScreen';
@@ -37,6 +39,7 @@ export function DestinationDetail() {
   const trip = trips.find((t) => t.id === d.id);
   const saved = isSaved(d.id);
   const related = relatedDestinations(d.id);
+  const places = placesIn(d.id).sort((a, b) => b.rating - a.rating);
 
   return (
     <div className={`container ${styles.page}`}>
@@ -56,7 +59,11 @@ export function DestinationDetail() {
           <p className={styles.lead}>{d.description}</p>
           <div className={styles.tags}>
             {d.interests.map((i) => (
-              <Link key={i} to={`/discover?interest=${i}`} className={styles.tag}>
+              <Link
+                key={i}
+                to={places.some((p) => p.interest === i) ? `/interests/${i}?city=${d.id}` : `/discover?interest=${i}`}
+                className={styles.tag}
+              >
                 {INTEREST_LABELS[i]}
               </Link>
             ))}
@@ -116,6 +123,23 @@ export function DestinationDetail() {
           </div>
         </aside>
       </div>
+
+      {places.length > 0 && (
+        <section className={styles.related} aria-labelledby="places-title">
+          <SectionHeader
+            id="places-title"
+            title={`Eat, see and do in ${d.name}`}
+            description="Rated by travelers. Add any of them to a day of your trip."
+          />
+          <ul className={rail.rail}>
+            {places.map((p) => (
+              <li key={p.id}>
+                <PlaceCard place={p} inRail compact />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {related.length > 0 && (
         <section className={styles.related} aria-labelledby="related-title">

@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { CATEGORY_LABELS, type Activity, type Booking } from '../../data/trips';
 import { Icon } from '../ui/Icon';
 import { StatusPill } from '../ui/StatusPill';
@@ -34,8 +35,17 @@ export function ActivityRow({ activity: a, booking, done, isLast, onToggle }: Ac
           {CATEGORY_LABELS[a.category]}
           {a.duration && <span className={styles.duration}> · {a.duration}</span>}
           {a.addedBy === 'noma' && <span className={styles.added}>Added with NOMA</span>}
+          {a.addedBy === 'you' && <span className={styles.added}>Added from Explore</span>}
         </p>
-        <h3 className={styles.title}>{a.title}</h3>
+        <h3 className={styles.title}>
+          {a.placeId ? (
+            <Link to={`/places/${a.placeId}`} className={styles.titleLink}>
+              {a.title}
+            </Link>
+          ) : (
+            a.title
+          )}
+        </h3>
         <p className={styles.place}>{a.place}</p>
 
         {a.note && <p className={styles.note}>{a.note}</p>}

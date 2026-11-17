@@ -1,4 +1,5 @@
 import { featured, trending } from './explore';
+import { PLACES } from './places';
 import type { PhotoRef } from './trips';
 
 export type SavedKind = 'destination' | 'place' | 'food' | 'stay';
@@ -38,14 +39,6 @@ const savedOnly: SavedItem[] = [
     photo: { id: '1533105079780-92b9be482077', alt: 'Whitewashed steps in Oia leading down toward the blue Aegean', focus: '50% 50%' },
   },
   {
-    id: 'wine-bar',
-    kind: 'food',
-    name: 'Natural wine bar',
-    location: 'Príncipe Real, Lisbon / PT',
-    note: 'Small plates and Portuguese natural wines. Walk-ins only after 7.',
-    photo: { id: '1517248135467-4c7edcad34c4', alt: 'A dim restaurant interior with leather banquettes and warm pendant lights', focus: '50% 50%' },
-  },
-  {
     id: 'ubud-villa',
     kind: 'stay',
     name: 'Jungle pool villa',
@@ -82,6 +75,14 @@ export const SAVABLE: Map<string, SavedItem> = new Map(
       location: d.location,
       note: d.note,
       photo: d.photo,
+    })),
+    ...PLACES.map((p) => ({
+      id: p.id,
+      kind: (p.interest === 'food' ? 'food' : 'place') as SavedKind,
+      name: p.name,
+      location: `${p.area}, ${p.city}`,
+      note: p.blurb,
+      photo: p.photo,
     })),
   ].map((item) => [item.id, item]),
 );

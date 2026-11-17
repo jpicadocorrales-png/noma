@@ -1,88 +1,93 @@
 .card {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
   height: 100%;
-  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  transition:
+    border-color var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
 }
 
-.media {
-  position: relative;
-  aspect-ratio: 4 / 5;
+.card:hover {
+  border-color: var(--line-strong);
+  box-shadow: 0 10px 24px -18px rgba(24, 59, 56, 0.4);
+}
+
+.thumb {
+  aspect-ratio: 1;
   overflow: hidden;
-  border-radius: var(--radius-card);
+  border-radius: 12px;
   background: var(--surface-muted);
 }
 
 .card:hover .photo {
-  transform: scale(1.04);
-}
-
-.kind {
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
-  padding: 5px 9px;
-  border-radius: var(--radius-pill);
-  background: rgba(244, 240, 231, 0.92);
-  color: var(--color-forest);
-  font-size: 9px;
-}
-
-.save {
-  position: absolute;
-  top: 8px;
-  right: 8px;
+  transform: scale(1.05);
 }
 
 .body {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  padding: 12px 2px 0;
+  align-items: flex-start;
+  min-width: 0;
+  min-height: 100%;
+  padding-right: 36px; /* room for the bookmark */
 }
 
-/* Lead card: the photo absorbs extra height, the text stays compact */
-.lead .body {
-  flex: none;
-}
-
-.lead .foot {
-  margin-top: 0;
-}
-
-.location {
+.meta {
   color: var(--text-muted);
   font-size: 10px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .name {
-  margin-top: 6px;
+  margin-top: 4px;
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: 22px;
-  line-height: 1.05;
+  font-size: 21px;
+  line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--color-forest);
 }
 
-.nameLink {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 0% 1px;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  transition: background-size var(--duration) var(--ease-out);
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 18px;
 }
 
-.nameLink:hover {
-  background-size: 100% 1px;
+.link:focus-visible {
+  outline: none;
+}
+
+.link:focus-visible::after {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.location {
+  margin-top: 4px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.rating {
+  margin-top: 6px;
 }
 
 .note {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin-top: 6px;
@@ -95,10 +100,9 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   gap: 4px 12px;
   margin-top: auto;
-  padding-top: 12px;
+  padding-top: 10px;
 }
 
 .when {
@@ -108,10 +112,12 @@
 }
 
 .plan {
+  position: relative;
+  z-index: 2; /* above the stretched link */
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 4px 0;
+  padding: 2px 0;
   border: 0;
   background: none;
   color: var(--color-forest);
@@ -128,18 +134,27 @@
   transform: translateX(3px);
 }
 
+.onTrip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-forest);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.save {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+}
+
 @media (min-width: 768px) {
-  .kind {
-    left: 12px;
-    bottom: 12px;
-    font-size: 10px;
-  }
-
-  .name {
-    font-size: 26px;
-  }
-
-  .note {
-    font-size: 14px;
+  .card {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 16px;
   }
 }

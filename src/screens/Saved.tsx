@@ -6,7 +6,10 @@ import { Tabs, type TabItem } from '../components/ui/Tabs';
 import { Toast } from '../components/ui/Toast';
 import { useSaved } from '../state/SavedProvider';
 import type { SavedKind } from '../data/saved';
-import { cx } from '../lib/cx';
+import { SectionHeader } from '../components/ui/SectionHeader';
+import { PlaceCard } from '../components/places/PlaceCard';
+import { useSuggestions } from '../components/places/useSuggestions';
+import rail from '../components/ui/rail.module.css';
 import styles from './Saved.module.css';
 
 type Filter = 'all' | SavedKind;
@@ -26,6 +29,7 @@ export function Saved() {
   const assistant = useAssistant();
   const [filter, setFilter] = useState<Filter>('all');
   const [removed, setRemoved] = useState<{ id: string; name: string; savedAt: string } | null>(null);
+  const suggestions = useSuggestions({ limit: 10 });
   useAssistantScreen('Saved', SUGGESTIONS);
 
   const counts = entries.reduce<Record<string, number>>((acc, e) => {
@@ -38,9 +42,6 @@ export function Saved() {
   }));
   const activeFilter = tabs.some((t) => t.id === filter) ? filter : 'all';
   const visible = activeFilter === 'all' ? entries : entries.filter((e) => e.item.kind === activeFilter);
-
-  // The magazine layout is composed for exactly seven cards; any other count uses the even grid.
-  const editorial = activeFilter === 'all' && visible.length === 7;
 
   const dismissToast = useCallback(() => setRemoved(null), []);
 
@@ -66,14 +67,13 @@ export function Saved() {
           id="saved-panel"
           role="tabpanel"
           aria-labelledby={`saved-tab-${activeFilter}`}
-          className={cx(styles.grid, editorial && styles.editorial)}
+          className={styles.grid}
         >
-          {visible.map(({ item, savedAt, daysAgo }, i) => (
+          {visible.map(({ item, savedAt, daysAgo }) => (
             <li key={item.id}>
               <SavedCard
                 item={item}
                 daysAgo={daysAgo}
-                lead={editorial && i === 0}
                 onRemove={() => setRemoved({ id: item.id, name: item.name, savedAt })}
                 onPlan={() => assistant.open(`Add ${item.name} to one of my trips`)}
               />
@@ -88,6 +88,23 @@ export function Saved() {
             Go to Explore
           </Link>
         </div>
+      )}
+
+      {suggestions.length > 0 && (
+        <section aria-labelledby="suggested-title" className={styles.suggested}>
+          <SectionHeader
+            id="suggested-title"
+            title="Based on what you saved"
+            description="Places to eat, see and do near your saves and trips."
+          />
+          <ul className={rail.rail}>
+            {suggestions.map((s) => (
+              <li key={s.place.id}>
+                <PlaceCard place={s.place} reason={s.reason} inRail compact />
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
 
       <Toast

@@ -21,8 +21,10 @@ export interface Activity {
   bookingId?: string;
   /** How to reach the next stop, e.g. "8 min walk". */
   transit?: string;
-  /** Set when the stop came from a plan change the traveler approved. */
-  addedBy?: 'noma';
+  /** Set when the stop came from a plan change the traveler approved, or from Explore. */
+  addedBy?: 'noma' | 'you';
+  /** Links the stop to its place page. */
+  placeId?: string;
 }
 
 export interface WeatherAlert {
@@ -103,6 +105,8 @@ export interface Trip {
   /** Tentative timing for ideas, e.g. "Spring 2027". */
   tentative?: string;
   savedPlaces?: number;
+  /** Places added from Explore to a trip that has no day-by-day plan yet. */
+  addedPlaceIds?: string[];
   stats?: { label: string; value: string }[];
   days: TripDay[];
   bookings: Booking[];

@@ -1,0 +1,37 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.star {
+  color: var(--color-terracotta);
+  stroke-width: 1.2;
+}
+
+.value {
+  font-weight: 800;
+  color: var(--text);
+}
+
+.count {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 1px;
+}
+
+.on {
+  color: var(--color-terracotta);
+  stroke-width: 1.2;
+}
+
+.off {
+  color: var(--line-strong);
+  stroke-width: 1.2;
+}

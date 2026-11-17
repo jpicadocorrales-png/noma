@@ -1,0 +1,99 @@
+.box {
+  display: grid;
+  gap: 12px;
+}
+
+.box > button {
+  width: 100%;
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-forest);
+}
+
+.hint {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 6px;
+}
+
+.day {
+  display: grid;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--color-ivory-raised);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--duration) var(--ease-out),
+    border-color var(--duration) var(--ease-out);
+}
+
+.day:hover:not(.daySelected) {
+  border-color: var(--color-forest);
+}
+
+.daySelected {
+  background: var(--color-forest);
+  border-color: var(--color-forest);
+  color: var(--color-ivory);
+}
+
+.dayNum {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.dayDate {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.added {
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--color-sage-soft);
+}
+
+.addedTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--color-forest);
+}
+
+.tick {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-forest);
+  color: var(--color-ivory);
+}
+
+.addedBody {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

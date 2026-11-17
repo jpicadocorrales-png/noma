@@ -142,6 +142,17 @@
 }
 
 /* Done */
+.titleLink {
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.titleLink:hover {
+  text-decoration-color: currentColor;
+}
+
 .done .title {
   color: var(--text-subtle);
   text-decoration: line-through;

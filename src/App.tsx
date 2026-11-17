@@ -10,6 +10,8 @@ import { Discover } from './screens/Discover';
 import { DestinationDetail } from './screens/DestinationDetail';
 import { CollectionDetail } from './screens/CollectionDetail';
 import { TripDetail } from './screens/TripDetail';
+import { InterestDetail } from './screens/InterestDetail';
+import { PlaceDetail } from './screens/PlaceDetail';
 import { Saved } from './screens/Saved';
 import { Profile } from './screens/Profile';
 import { PlaceholderScreen } from './screens/PlaceholderScreen';
@@ -27,6 +29,8 @@ export function App() {
                   <Route path="discover" element={<Discover />} />
                   <Route path="destinations/:destinationId" element={<DestinationDetail />} />
                   <Route path="collections/:collectionId" element={<CollectionDetail />} />
+                  <Route path="interests/:interestId" element={<InterestDetail />} />
+                  <Route path="places/:placeId" element={<PlaceDetail />} />
                   <Route path="trips" element={<MyTrips />} />
                   <Route path="trips/:tripId" element={<TripDetail />} />
                   <Route path="saved" element={<Saved />} />

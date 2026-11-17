@@ -7,6 +7,8 @@ import { BookingsView } from '../components/trips/BookingsView';
 import { BudgetView } from '../components/trips/BudgetView';
 import { Tabs, type TabItem } from '../components/ui/Tabs';
 import { Icon } from '../components/ui/Icon';
+import { PlaceCard } from '../components/places/PlaceCard';
+import { getPlace, type Place } from '../data/places';
 import { bookingTotals, useTrips } from '../state/TripsProvider';
 import { PlaceholderScreen } from './PlaceholderScreen';
 import styles from './TripDetail.module.css';
@@ -53,6 +55,7 @@ export function TripDetail() {
   };
 
   const totals = bookingTotals(trip);
+  const addedPlaces = (trip.addedPlaceIds ?? []).map(getPlace).filter((p): p is Place => Boolean(p));
   const hasPlan = trip.days.length > 0;
   const tabs: TabItem<View>[] = [
     { id: 'itinerary', label: 'Itinerary' },
@@ -88,9 +91,25 @@ export function TripDetail() {
           </div>
         </div>
       ) : (
-        <p className={styles.empty}>
-          {trip.summary} The full plan for this trip isn’t available in the preview yet.
-        </p>
+        <>
+          <p className={styles.empty}>
+            {trip.summary} The full plan for this trip isn’t available in the preview yet.
+          </p>
+          {addedPlaces.length > 0 && (
+            <section aria-labelledby="added-title" className={styles.added}>
+              <h2 id="added-title" className={styles.addedTitle}>
+                Places you’ve added
+              </h2>
+              <ul className={styles.addedGrid}>
+                {addedPlaces.map((p) => (
+                  <li key={p.id}>
+                    <PlaceCard place={p} compact />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </>
       )}
     </div>
   );

@@ -82,3 +82,21 @@
     top: calc(var(--top-bar-height) + 24px);
   }
 }
+
+/* Places added from Explore to a trip without a day plan */
+.added {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.addedTitle {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.addedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-3);
+}

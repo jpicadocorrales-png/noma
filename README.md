@@ -38,11 +38,12 @@ src/
     assistant/     AskNoma floating entry point and panel
     explore/       Explore Home sections and cards
     trips/         itinerary, bookings, budget and trip cards
+    places/        place cards, ratings, add-to-trip and saved-based suggestions
     saved/         saved place cards
     profile/       profile header, journeys timeline, sections
   state/           providers for trips, saved places and preferences (localStorage)
   data/            sample content (shaped like a future API)
-  screens/         ExploreHome, MyTrips, TripDetail, Saved, Profile
+  screens/         ExploreHome, InterestDetail, PlaceDetail, MyTrips, TripDetail, Saved, Profile
 ```
 
 ## Visual identity — "Modern Explorer"
@@ -67,7 +68,8 @@ All values live in `src/styles/tokens.css`; components should reference tokens, 
 
 - ✅ Design foundation and Explore Home (responsive)
 - ✅ My Trips: trip list, day-by-day itinerary, bookings and budget (`/trips/kyoto`)
-- ✅ Saved: places synced with Explore bookmarks, filters, undo
+- ✅ Explore by interest (`/interests/food`, culture, adventure, nature, relaxation): 40 restaurants, sights and activities with ratings, traveler reviews and practical details. Places can be added to a specific day of a trip (`/places/menya-koyo`), and "Picked for you" suggests places from your trips and saves
+- ✅ Saved: compact list synced with Explore bookmarks, filters, undo, and suggestions based on what you saved
 - ✅ Profile: travel style, journeys timeline, settings
 - ✅ Discover, destination pages and collection stories
 - ✅ Ask NOMA **demo**: prepared, context-aware replies to every suggestion in the app, built from live trip, saved and preference data (`src/components/assistant/demo/replies.ts`). The Day 03 rain alert walks through the full flow: NOMA proposes a plan change, shows exactly what changes, and applies it only when the traveler approves (undoable).
