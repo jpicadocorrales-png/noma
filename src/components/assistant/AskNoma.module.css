@@ -62,22 +62,10 @@
   pointer-events: none;
 }
 
-/* NOMA's mark: a ring holding a single point — a place in focus */
+/* Ask NOMA's mark: a speech bubble with a spark (see AssistantMark) */
 .mark {
-  position: relative;
+  display: block;
   flex: none;
-  width: 18px;
-  height: 18px;
-  border: 1.6px solid currentColor;
-  border-radius: 50%;
-}
-
-.mark::after {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  border-radius: 50%;
-  background: var(--color-terracotta);
 }
 
 /* ---------- Panel ---------- */
@@ -218,27 +206,31 @@
 
 .nomaRow {
   display: grid;
-  grid-template-columns: 22px minmax(0, 1fr);
+  grid-template-columns: 26px minmax(0, 1fr);
   gap: 10px;
   align-items: start;
 }
 
-/* NOMA's mark, as on the trigger */
+/* The assistant's mark, as on the trigger */
 .avatar {
-  position: relative;
-  width: 22px;
-  height: 22px;
-  margin-top: 1px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-top: -2px;
   border-radius: 50%;
   background: var(--color-forest);
+  color: var(--color-ivory);
 }
 
-.avatar::after {
-  content: '';
-  position: absolute;
-  inset: 7px;
+.titleMark {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: var(--color-terracotta);
+  background: var(--color-forest);
+  color: var(--color-ivory);
 }
 
 .typing {

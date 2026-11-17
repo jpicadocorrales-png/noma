@@ -3,6 +3,7 @@ import { Icon } from '../ui/Icon';
 import { cx } from '../../lib/cx';
 import { useAssistant } from './AssistantProvider';
 import { NomaReply } from './NomaReply';
+import { AssistantMark } from './AssistantMark';
 import { demoReply, type DemoReply, type ReplyContext } from './demo/replies';
 import { useTrips } from '../../state/TripsProvider';
 import { useSaved } from '../../state/SavedProvider';
@@ -154,6 +155,9 @@ export function AskNoma() {
         <header className={styles.panelHeader}>
           <div className={styles.headerText}>
             <h2 id={titleId} className={styles.panelTitle}>
+              <span className={styles.titleMark} aria-hidden="true">
+                <AssistantMark size={18} />
+              </span>
               Ask NOMA <span className={styles.demo}>Demo</span>
             </h2>
             <p className={styles.context}>
@@ -206,7 +210,9 @@ export function AskNoma() {
                   </li>
                 ) : (
                   <li key={m.id} className={styles.nomaRow}>
-                    <span className={styles.avatar} aria-hidden="true" />
+                    <span className={styles.avatar} aria-hidden="true">
+                      <AssistantMark size={16} />
+                    </span>
                     {m.status === 'typing' || !m.reply ? (
                       <span className={styles.typing} aria-label="NOMA is typing">
                         <span />
@@ -259,9 +265,10 @@ export function AskNoma() {
         aria-expanded={isOpen}
         aria-controls={panelId}
         aria-label="Ask NOMA"
+        title={compact ? 'Ask NOMA, your trip assistant' : undefined}
         onClick={() => open()}
       >
-        <span className={styles.mark} aria-hidden="true" />
+        <AssistantMark size={22} className={styles.mark} />
         <span className={styles.triggerLabel}>Ask NOMA</span>
       </button>
     </>
