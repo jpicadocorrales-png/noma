@@ -17,9 +17,21 @@
   background: currentColor;
 }
 
-.confirmed {
+/* Booked and paid: solid */
+.paid {
   background: var(--color-sage-soft);
   color: var(--color-forest);
+}
+
+/* Booked, paid later: outlined, so it reads as done but not settled */
+.reserved {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--color-sage);
+  color: var(--color-forest);
+}
+
+.reserved .dot {
+  background: var(--color-sage);
 }
 
 .pending {

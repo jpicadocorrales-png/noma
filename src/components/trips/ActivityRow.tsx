@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { CATEGORY_LABELS, type Activity, type Booking } from '../../data/trips';
+import { BOOKING_STATUS, CATEGORY_LABELS, type Activity, type Booking } from '../../data/trips';
 import { Icon } from '../ui/Icon';
 import { StatusPill } from '../ui/StatusPill';
 import { cx } from '../../lib/cx';
@@ -51,8 +51,9 @@ export function ActivityRow({ activity: a, booking, done, isLast, onToggle }: Ac
         {a.note && <p className={styles.note}>{a.note}</p>}
 
         {booking && (
-          <StatusPill tone={booking.status === 'confirmed' ? 'confirmed' : 'pending'} className={styles.booking}>
-            {booking.status === 'confirmed' ? `Booked · ${booking.reference}` : 'Booking pending'}
+          <StatusPill tone={BOOKING_STATUS[booking.status].tone} className={styles.booking}>
+            {BOOKING_STATUS[booking.status].label}
+            {booking.reference && ` · ${booking.reference}`}
           </StatusPill>
         )}
 

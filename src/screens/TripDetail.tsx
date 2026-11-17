@@ -18,7 +18,7 @@ const VIEWS: View[] = ['itinerary', 'bookings', 'budget'];
 
 const SUGGESTIONS: Record<View, (day: string) => string[]> = {
   itinerary: (day) => [`Make ${day} less rushed`, 'Find a good dinner near the last stop', 'What should I book in advance?'],
-  bookings: () => ['What’s still unconfirmed?', 'Remind me what to bring for each booking'],
+  bookings: () => ['What’s still pending?', 'Remind me what to bring for each booking'],
   budget: () => ['Where can I save on this trip?', 'Is my food budget realistic for Kyoto?'],
 };
 

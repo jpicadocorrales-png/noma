@@ -118,7 +118,7 @@ const BRING_BY_BOOKING: Record<string, string> = {
   'b-train-in': 'Haruka Express: reserved-seat tickets, or the QR code from the JR West app.',
   'b-stay': 'Machiya: nothing to print. Your host meets you at the door from 17:00.',
   'b-dinner': 'Kaiseki dinner: smart-casual, no shorts. Arrive five minutes early.',
-  'b-eikando': 'Autumn illumination: tickets are still pending, so bring the confirmation once it arrives.',
+  'b-eikando': 'Autumn illumination: this one isn’t booked yet. Once it is, bring the ticket QR code.',
   'b-boat': 'Hozugawa river boat: a waterproof layer, and cash for the bus back if you miss the train.',
   'b-pottery': 'Pottery workshop: clothes you don’t mind getting clay on. Pieces are fired and posted home.',
   'b-train-out': 'Haruka Express back: same as the way in. Allow two hours at KIX for check-in.',
@@ -226,9 +226,9 @@ const INTENTS: Intent[] = [
         text: 'In maple season, three things in Kyoto sell out. Here’s where you stand:',
         bullets: [
           pending.some((b) => b.id === 'b-eikando')
-            ? 'Eikan-dō evening illumination: your tickets are still pending. This is the one to chase.'
-            : 'Eikan-dō evening illumination: confirmed.',
-          'Kaiseki dinners: yours at Gion Shirakawa is confirmed.',
+            ? 'Eikan-dō evening illumination: still a pending booking. This is the one to book next.'
+            : 'Eikan-dō evening illumination: booked.',
+          'Kaiseki dinners: yours at Gion Shirakawa is reserved. You pay at the restaurant.',
           'Ōkōchi Sansō and Fushimi Inari: no booking needed. Just arrive early.',
         ],
         links: [{ label: 'View bookings', to: '/trips/kyoto?view=bookings' }],
@@ -237,15 +237,16 @@ const INTENTS: Intent[] = [
   },
 
   {
-    match: (q) => /still (unconfirmed|unbooked)|what'?s pending/.test(q),
+    match: (q) => /still (unconfirmed|unbooked|pending|to book)|what'?s pending|pending booking/.test(q),
     reply: (ctx) => {
       const trip = kyotoOf(ctx);
       if (!trip) return { text: 'You don’t have an upcoming trip yet.' };
       const t = bookingTotals(trip);
       const pending = trip.bookings.filter((b) => b.status === 'pending');
-      if (pending.length === 0) return { text: `Everything is confirmed: all ${t.total} bookings for Kyoto.` };
+      if (pending.length === 0)
+        return { text: `Everything is booked: ${t.paid} paid and ${t.reserved} reserved, to pay on the trip.` };
       return {
-        text: `${t.confirmed} of ${t.total} Kyoto bookings are confirmed. ${pending.length === 1 ? 'One is' : `${pending.length} are`} still waiting:`,
+        text: `${t.booked} of ${t.total} Kyoto bookings are made: ${t.paid} paid and ${t.reserved} reserved, to pay on the trip. ${pending.length === 1 ? 'One is' : `${pending.length} are`} still a pending booking:`,
         bullets: pending.map((b) => {
           const date = dayDate(trip, b.dayIndex);
           return `${b.title}, ${b.provider} · ${date ? formatFullDay(date) : `Day ${b.dayIndex + 1}`}, ${b.time}`;
@@ -577,9 +578,9 @@ const INTENTS: Intent[] = [
       const trip = kyotoOf(ctx);
       const t = trip ? bookingTotals(trip) : null;
       return {
-        text: `Your Kyoto trip is five days in maple season${t ? `, with ${t.confirmed} of ${t.total} bookings confirmed` : ''}. Want to look at a day, the bookings or the budget?`,
+        text: `Your Kyoto trip is five days in maple season${t ? `, with ${t.booked} of ${t.total} bookings made` : ''}. Want to look at a day, the bookings or the budget?`,
         links: [{ label: 'Open your Kyoto trip', to: '/trips/kyoto' }],
-        followUps: ['What’s still unconfirmed?', 'Where can I save on this trip?'],
+        followUps: ['What’s still pending?', 'Where can I save on this trip?'],
       };
     },
   },

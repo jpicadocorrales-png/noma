@@ -52,12 +52,14 @@ export function UpcomingTripCard({ trip, today }: UpcomingTripCardProps) {
 
         <div className={styles.readiness}>
           <div className={styles.readinessHead}>
-            <span>Bookings confirmed</span>
+            <span>
+              Bookings · {totals.paid} paid, {totals.reserved} reserved
+            </span>
             <span className={styles.figure}>
-              {totals.confirmed} / {totals.total}
+              {totals.booked} / {totals.total}
             </span>
           </div>
-          <ProgressBar value={totals.confirmed} max={totals.total} label="Bookings confirmed" />
+          <ProgressBar value={totals.booked} max={totals.total} label="Bookings reserved or paid" />
         </div>
 
         {next && nextDate && (

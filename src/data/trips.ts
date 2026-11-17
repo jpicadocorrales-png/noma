@@ -54,6 +54,13 @@ export interface TripDay {
 
 export type BookingKind = 'flight' | 'train' | 'stay' | 'dining' | 'experience';
 
+/**
+ * pending:  not booked yet, or requested and waiting for the provider.
+ * reserved: booked with a reference, paid later (on arrival or on the day).
+ * paid:     booked and paid.
+ */
+export type BookingStatus = 'pending' | 'reserved' | 'paid';
+
 export interface Booking {
   id: string;
   kind: BookingKind;
@@ -62,8 +69,11 @@ export interface Booking {
   detail: string;
   dayIndex: number;
   time: string;
+  /** Empty until the booking is made. */
   reference: string;
-  status: 'confirmed' | 'pending';
+  status: BookingStatus;
+  /** How a reserved booking is paid, e.g. "Pay at check-in". */
+  payment?: string;
   amount: number;
   categoryId: BudgetCategoryId;
 }
@@ -127,6 +137,12 @@ export const BOOKING_LABELS: Record<BookingKind, string> = {
   stay: 'Stay',
   dining: 'Dining',
   experience: 'Experience',
+};
+
+export const BOOKING_STATUS: Record<BookingStatus, { label: string; tone: 'paid' | 'reserved' | 'pending' }> = {
+  pending: { label: 'Pending booking', tone: 'pending' },
+  reserved: { label: 'Reserved', tone: 'reserved' },
+  paid: { label: 'Paid', tone: 'paid' },
 };
 
 /* ---------- Sample data ---------- */
@@ -290,13 +306,13 @@ const kyotoDays: TripDay[] = [
 ];
 
 const kyotoBookings: Booking[] = [
-  { id: 'b-flight-out', kind: 'flight', title: 'Flight to Osaka Kansai', provider: 'All Nippon Airways', detail: 'SFO → KIX · 2 seats, round trip', dayIndex: 0, time: '14:10', reference: 'NQ8K2L', status: 'confirmed', amount: 1680, categoryId: 'transport' },
-  { id: 'b-train-in', kind: 'train', title: 'Haruka Express', provider: 'JR West', detail: 'KIX → Kyoto · Reserved seats', dayIndex: 0, time: '16:00', reference: 'HR-20418', status: 'confirmed', amount: 64, categoryId: 'transport' },
-  { id: 'b-stay', kind: 'stay', title: 'Higashiyama machiya', provider: 'Private townhouse', detail: '4 nights · Check-in from 17:00', dayIndex: 0, time: '17:30', reference: 'MCH-5521', status: 'confirmed', amount: 1240, categoryId: 'stay' },
-  { id: 'b-dinner', kind: 'dining', title: 'Kaiseki dinner', provider: 'Gion Shirakawa', detail: 'Table for 2 · Counter seats', dayIndex: 0, time: '19:45', reference: 'GS-0938', status: 'confirmed', amount: 320, categoryId: 'food' },
-  { id: 'b-eikando', kind: 'experience', title: 'Autumn illumination', provider: 'Eikan-dō Zenrin-ji', detail: 'Evening entry · 2 tickets', dayIndex: 1, time: '17:30', reference: 'Awaiting', status: 'pending', amount: 24, categoryId: 'experiences' },
-  { id: 'b-boat', kind: 'experience', title: 'Hozugawa river boat', provider: 'Hozugawa Kudari', detail: '2 seats · Weather dependent', dayIndex: 2, time: '14:00', reference: 'HZ-7713', status: 'confirmed', amount: 56, categoryId: 'experiences' },
-  { id: 'b-pottery', kind: 'experience', title: 'Pottery workshop', provider: 'Gojōzaka studio', detail: '2 places · Wheel throwing', dayIndex: 3, time: '15:00', reference: 'PT-2207', status: 'confirmed', amount: 110, categoryId: 'experiences' },
-  { id: 'b-train-out', kind: 'train', title: 'Haruka Express', provider: 'JR West', detail: 'Kyoto → KIX · Reserved seats', dayIndex: 4, time: '13:30', reference: 'HR-20977', status: 'confirmed', amount: 64, categoryId: 'transport' },
-  { id: 'b-flight-back', kind: 'flight', title: 'Flight home', provider: 'All Nippon Airways', detail: 'KIX → SFO · Return leg', dayIndex: 4, time: '17:45', reference: 'NQ8K2L', status: 'confirmed', amount: 0, categoryId: 'transport' },
+  { id: 'b-flight-out', kind: 'flight', title: 'Flight to Osaka Kansai', provider: 'All Nippon Airways', detail: 'SFO → KIX · 2 seats, round trip', dayIndex: 0, time: '14:10', reference: 'NQ8K2L', status: 'paid', amount: 1680, categoryId: 'transport' },
+  { id: 'b-train-in', kind: 'train', title: 'Haruka Express', provider: 'JR West', detail: 'KIX → Kyoto · Reserved seats', dayIndex: 0, time: '16:00', reference: 'HR-20418', status: 'paid', amount: 64, categoryId: 'transport' },
+  { id: 'b-stay', kind: 'stay', title: 'Higashiyama machiya', provider: 'Private townhouse', detail: '4 nights · Check-in from 17:00', dayIndex: 0, time: '17:30', reference: 'MCH-5521', status: 'reserved', payment: 'Pay at check-in', amount: 1240, categoryId: 'stay' },
+  { id: 'b-dinner', kind: 'dining', title: 'Kaiseki dinner', provider: 'Gion Shirakawa', detail: 'Table for 2 · Counter seats', dayIndex: 0, time: '19:45', reference: 'GS-0938', status: 'reserved', payment: 'Pay at the restaurant', amount: 320, categoryId: 'food' },
+  { id: 'b-eikando', kind: 'experience', title: 'Autumn illumination', provider: 'Eikan-dō Zenrin-ji', detail: 'Evening entry · 2 tickets', dayIndex: 1, time: '17:30', reference: '', status: 'pending', amount: 24, categoryId: 'experiences' },
+  { id: 'b-boat', kind: 'experience', title: 'Hozugawa river boat', provider: 'Hozugawa Kudari', detail: '2 seats · Weather dependent', dayIndex: 2, time: '14:00', reference: 'HZ-7713', status: 'paid', amount: 56, categoryId: 'experiences' },
+  { id: 'b-pottery', kind: 'experience', title: 'Pottery workshop', provider: 'Gojōzaka studio', detail: '2 places · Wheel throwing', dayIndex: 3, time: '15:00', reference: 'PT-2207', status: 'reserved', payment: 'Pay at the studio', amount: 110, categoryId: 'experiences' },
+  { id: 'b-train-out', kind: 'train', title: 'Haruka Express', provider: 'JR West', detail: 'Kyoto → KIX · Reserved seats', dayIndex: 4, time: '13:30', reference: 'HR-20977', status: 'paid', amount: 64, categoryId: 'transport' },
+  { id: 'b-flight-back', kind: 'flight', title: 'Flight home', provider: 'All Nippon Airways', detail: 'KIX → SFO · Return leg', dayIndex: 4, time: '17:45', reference: 'NQ8K2L', status: 'paid', amount: 0, categoryId: 'transport' },
 ];

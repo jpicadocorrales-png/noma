@@ -22,7 +22,8 @@ export function TripGlance({ trip }: { trip: Trip }) {
           <p className={`t-meta ${styles.label}`}>Next up</p>
           <p className={styles.value}>{next.title}</p>
           <p className={styles.sub}>
-            {formatFullDay(nextDate)} · {next.time} · Ref {next.reference}
+            {formatFullDay(nextDate)} · {next.time}
+            {next.reference && ` · Ref ${next.reference}`}
           </p>
         </div>
       )}
@@ -31,11 +32,16 @@ export function TripGlance({ trip }: { trip: Trip }) {
         <div className={styles.row}>
           <p className={`t-meta ${styles.label}`}>Bookings</p>
           <p className={styles.figure}>
-            {totals.confirmed} / {totals.total}
+            {totals.booked} / {totals.total} <span>booked</span>
           </p>
         </div>
-        <ProgressBar value={totals.confirmed} max={totals.total} label="Bookings confirmed" />
-        {pending.length > 0 && <p className={styles.sub}>Waiting on: {pending.map((p) => p.title).join(', ')}</p>}
+        <ProgressBar value={totals.booked} max={totals.total} label="Bookings reserved or paid" />
+        <p className={styles.sub}>
+          {totals.paid} paid · {totals.reserved} reserved
+        </p>
+        {pending.length > 0 && (
+          <p className={styles.sub}>Pending booking: {pending.map((p) => p.title).join(', ')}</p>
+        )}
       </div>
 
       {budget && (

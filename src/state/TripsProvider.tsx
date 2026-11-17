@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import { createSampleTrips, type Trip } from '../data/trips';
+import { createSampleTrips, type Booking, type Trip } from '../data/trips';
 import { applyPlanChanges } from '../data/planChanges';
 import { ACTIVITY_CATEGORY, getPlace } from '../data/places';
 import { addDays, daysBetween, parseISODate, startOfDay } from '../lib/dates';
@@ -166,8 +166,21 @@ export function dayDate(trip: Trip, dayIndex: number): Date | null {
 }
 
 export function bookingTotals(trip: Trip) {
-  const confirmed = trip.bookings.filter((b) => b.status === 'confirmed').length;
-  return { confirmed, total: trip.bookings.length, pending: trip.bookings.length - confirmed };
+  const count = (status: Booking['status']) => trip.bookings.filter((b) => b.status === status).length;
+  const sum = (status: Booking['status']) =>
+    trip.bookings.filter((b) => b.status === status).reduce((total, b) => total + b.amount, 0);
+  const paid = count('paid');
+  const reserved = count('reserved');
+  return {
+    paid,
+    reserved,
+    pending: count('pending'),
+    /** Reserved or paid: a booking exists. */
+    booked: paid + reserved,
+    total: trip.bookings.length,
+    amountPaid: sum('paid'),
+    amountDue: sum('reserved'),
+  };
 }
 
 export function budgetSummary(trip: Trip) {

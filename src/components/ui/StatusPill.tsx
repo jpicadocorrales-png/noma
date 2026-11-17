@@ -3,7 +3,7 @@ import { cx } from '../../lib/cx';
 import styles from './StatusPill.module.css';
 
 interface StatusPillProps {
-  tone: 'confirmed' | 'pending' | 'neutral' | 'accent';
+  tone: 'paid' | 'reserved' | 'pending' | 'neutral' | 'accent';
   children: ReactNode;
   className?: string;
 }

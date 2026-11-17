@@ -22,6 +22,18 @@
   font-size: 18px;
 }
 
+.summaryMoney {
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.summaryPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .group {
   display: grid;
   gap: 12px;
@@ -118,8 +130,17 @@
 }
 
 .amount {
+  display: grid;
+  justify-items: end;
+  gap: 2px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+}
+
+.payment {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
 }
 
 @media (min-width: 768px) {
